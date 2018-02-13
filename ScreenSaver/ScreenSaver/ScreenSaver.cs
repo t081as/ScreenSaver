@@ -27,7 +27,6 @@
 
 #region Namespaces
 using System;
-using System.Windows.Forms;
 #endregion
 
 namespace ScreenSaver
@@ -39,17 +38,61 @@ namespace ScreenSaver
     {
         #region Constants and Fields
 
+        /// <summary>
+        /// The configuration of the screen saver.
+        /// </summary>
+        private IScreenSaverConfiguration screenSaverConfiguration;
+
         #endregion
 
         #region Constructors and Destructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ScreenSaver"/> class using the given screen saver configuration.
+        /// </summary>
+        /// <param name="screenSaverConfiguration">The configuration of the screen saver.</param>
+        /// <exception cref="ArgumentNullException"><c>screenSaverConfiguration</c> is null.</exception>
+        public ScreenSaver(IScreenSaverConfiguration screenSaverConfiguration)
+        {
+            if (screenSaverConfiguration == null)
+            {
+                throw new ArgumentNullException("screenSaverConfiguration");
+            }
+
+            this.screenSaverConfiguration = screenSaverConfiguration;
+        }
 
         #endregion
 
         #region Properties
 
+        /// <summary>
+        /// Gets the configuration of the screen saver.
+        /// </summary>
+        public IScreenSaverConfiguration ScreenSaverConfiguration
+        {
+            get
+            {
+                return this.screenSaverConfiguration;
+            }
+        }
+
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Runs this application as a screen saver.
+        /// </summary>
+        /// <param name="args">The command line arguments given to the application.</param>
+        /// <exception cref="ArgumentNullException"><c>args</c> is null.</exception>
+        public void Run(string[] args)
+        {
+            if (args == null)
+            {
+                throw new ArgumentNullException("args");
+            }
+        }
 
         #endregion
     }
