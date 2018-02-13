@@ -39,21 +39,6 @@ namespace ScreenSaver
     {
         #region Constants and Fields
 
-        /// <summary>
-        /// The <see cref="Control"/> that shall be used as screen saver.
-        /// </summary>
-        private Control screenSaverControl;
-
-        /// <summary>
-        /// The <see cref="Control"/> that shall be used as preview.
-        /// </summary>
-        private Control previewControl;
-
-        /// <summary>
-        /// The <see cref="Control"/> that shall be used when the user configures the screen saver.
-        /// </summary>
-        private Control configurationControl;
-
         #endregion
 
         #region Constructors and Destructors
@@ -61,33 +46,6 @@ namespace ScreenSaver
         #endregion
 
         #region Properties
-
-        /// <summary>
-        /// Gets or sets the <see cref="Control"/> that shall be used as screen saver.
-        /// </summary>
-        /// <value>A <see cref="Control"/>.</value>
-        public Control ScreenSaverControl
-        {
-
-        }
-
-        /// <summary>
-        /// Gets or sets the <see cref="Control"/> that shall be used as preview.
-        /// </summary>
-        /// <value>A <see cref="Control"/> or <c>null</c> if the <see cref="ScreenSaverControl"/> shall be used.</value>
-        public Control PreviewControl
-        {
-
-        }
-
-        /// <summary>
-        /// Gets or sets the <see cref="Control"/> that shall be used when the user configures the screen saver.
-        /// </summary>
-        /// <value>A <see cref="Control"/> or <c>null</c> if this screen saver does not support configuration.</value>
-        public Control ConfigurationControl
-        {
-
-        }
 
         #endregion
 
