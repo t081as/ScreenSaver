@@ -1,4 +1,4 @@
-﻿{}#region MIT License
+﻿#region MIT License
 // The MIT License (MIT)
 //
 // Copyright © 2017-2018 Tobias Koch <t.koch@tk-software.de>
