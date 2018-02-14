@@ -19,8 +19,7 @@ namespace ScreenSaver.Test
         [STAThread]
         public static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            throw new NotImplementedException();
         }
 
         #endregion

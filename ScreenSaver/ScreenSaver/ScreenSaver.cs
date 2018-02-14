@@ -27,6 +27,7 @@
 
 #region Namespaces
 using System;
+using System.Windows.Forms;
 #endregion
 
 namespace ScreenSaver
@@ -92,6 +93,76 @@ namespace ScreenSaver
             {
                 throw new ArgumentNullException("args");
             }
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            string command = string.Empty;
+
+            if (args.Length > 0)
+            {
+                command = args[0].Trim().ToLower();
+            }
+
+            switch (command)
+            {
+                case "/s":
+
+                    this.Show();
+
+                break;
+
+                case "/p":
+
+                    if (args.Length > 1)
+                    {
+                        int parentWindowHandle;
+
+                        if (int.TryParse(args[1].Trim(), out parentWindowHandle))
+                        {
+                            this.Preview(new IntPtr(parentWindowHandle));
+                        }
+                    }
+
+                break;
+
+                case "/c":
+                case "":
+
+                    this.Configure();
+
+                break;
+
+                default:
+
+                    Application.Exit();
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Shows the screen saver.
+        /// </summary>
+        protected virtual void Show()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Shows the screen saver preview in the parent window provided by the operating system.
+        /// </summary>
+        /// <param name="parentWindowHandle">The handle of the parent window provided by the operating system.</param>
+        protected virtual void Preview(IntPtr parentWindowHandle)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Configures the screen saver.
+        /// </summary>
+        protected virtual void Configure()
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
