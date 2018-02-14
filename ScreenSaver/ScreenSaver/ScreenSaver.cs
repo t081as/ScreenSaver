@@ -122,6 +122,14 @@ namespace ScreenSaver
                         {
                             this.Preview(new IntPtr(parentWindowHandle));
                         }
+                        else
+                        {
+                            Environment.Exit(1);
+                        }
+                    }
+                    else
+                    {
+                        Environment.Exit(1);
                     }
 
                 break;
@@ -135,7 +143,7 @@ namespace ScreenSaver
 
                 default:
 
-                    Application.Exit();
+                    Environment.Exit(1);
                     break;
             }
         }
@@ -154,7 +162,21 @@ namespace ScreenSaver
         /// <param name="parentWindowHandle">The handle of the parent window provided by the operating system.</param>
         protected virtual void Preview(IntPtr parentWindowHandle)
         {
-            throw new NotImplementedException();
+            Control previewControl = this.screenSaverConfiguration.CreatePreviewControl();
+
+            if (previewControl == null)
+            {
+                previewControl = this.screenSaverConfiguration.CreateScreenSaverControl(Screen.PrimaryScreen);
+            }
+
+            if (previewControl != null)
+            {
+                throw new NotImplementedException();
+            }
+            else
+            {
+                throw new ArgumentNullException("IScreenSaverConfiguration.CreateScreenSaverControl()");
+            }
         }
 
         /// <summary>
@@ -162,7 +184,16 @@ namespace ScreenSaver
         /// </summary>
         protected virtual void Configure()
         {
-            throw new NotImplementedException();
+            Control configurationControl = this.screenSaverConfiguration.CreateConfigurationControl();
+
+            if (configurationControl != null)
+            {
+                throw new NotImplementedException();
+            }
+            else
+            {
+                Environment.Exit(0);
+            }
         }
 
         #endregion
