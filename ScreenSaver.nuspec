@@ -22,6 +22,29 @@
     <file src="CHANGELOG.md" />
     <file src="AUTHORS.txt" />
 
-    <file src="Build/Release/**" target="lib" exclude="*Test*"/>
+    <file src="Build/Release/net45/ScreenSaver.dll" target="lib/net45" />
+    <file src="Build/Release/net45/ScreenSaver.xml" target="lib/net45" />
+    
+    <file src="Build/Release/net451/ScreenSaver.dll" target="lib/net451" />
+    <file src="Build/Release/net451/ScreenSaver.xml" target="lib/net451" />
+    
+    <file src="Build/Release/net452/ScreenSaver.dll" target="lib/net452" />
+    <file src="Build/Release/net452/ScreenSaver.xml" target="lib/net452" />
+    
+    <file src="Build/Release/net46/ScreenSaver.dll" target="lib/net46" />
+    <file src="Build/Release/net46/ScreenSaver.xml" target="lib/net46" />
+    
+    <file src="Build/Release/net461/ScreenSaver.dll" target="lib/net461" />
+    <file src="Build/Release/net461/ScreenSaver.xml" target="lib/net461" />
+    
+    <file src="Build/Release/net462/ScreenSaver.dll" target="lib/net462" />
+    <file src="Build/Release/net462/ScreenSaver.xml" target="lib/net462" />
+    
+    <file src="Build/Release/net47/ScreenSaver.dll" target="lib/net47" />
+    <file src="Build/Release/net47/ScreenSaver.xml" target="lib/net47" />
+    
+    <file src="Build/Release/net471/ScreenSaver.dll" target="lib/net471" />
+    <file src="Build/Release/net471/ScreenSaver.xml" target="lib/net471" />
+    
   </files>
 </package>

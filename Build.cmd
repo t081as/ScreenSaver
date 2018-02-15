@@ -8,7 +8,7 @@ nuget restore ScreenSaver.sln
 if errorlevel 1 goto error
 
 echo Setting version number
-Build\Packages\Veronique.1.0.0\tools\Veronique
+Build\Packages\Veronique.1.1.0\tools\Veronique
 if errorlevel 1 goto error
 
 echo Building solution v4.5 (release)
