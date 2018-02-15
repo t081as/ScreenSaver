@@ -27,6 +27,7 @@
 
 #region Namespaces
 using System;
+using System.Globalization;
 using System.Windows.Forms;
 #endregion
 
@@ -44,6 +45,11 @@ namespace ScreenSaver
         /// </summary>
         private IScreenSaverConfiguration screenSaverConfiguration;
 
+        /// <summary>
+        /// Provides a simple translation.
+        /// </summary>
+        private ScreenSaverTranslation translation;
+
         #endregion
 
         #region Constructors and Destructors
@@ -60,6 +66,7 @@ namespace ScreenSaver
                 throw new ArgumentNullException("screenSaverConfiguration");
             }
 
+            this.translation = new ScreenSaverTranslation(CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             this.screenSaverConfiguration = screenSaverConfiguration;
         }
 
