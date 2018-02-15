@@ -1,0 +1,87 @@
+{
+  "projectname":"ScreenSaver",
+  "formatversion":"v1",
+  
+  "definitions":
+  [
+    {
+      "name": "major",
+      "command": 
+      {
+        "name": "git-tag",
+        "parameters": [ "major" ]
+      }
+    },
+    {
+      "name":"minor",
+      "command":
+      {
+        "name":"git-tag",
+        "parameters": ["minor"]
+      }
+    },
+    {
+      "name":"revision",
+      "command":
+      {
+        "name":"git-tag",
+        "parameters": ["commits"]
+      }
+    },
+    {
+      "name":"build",
+      "command":
+      {
+        "name":"build-number",
+        "parameters": []
+      }
+    },
+    {
+      "name":"sha",
+      "command":
+      {
+        "name":"git-tag",
+        "parameters": ["shasum"]
+      }
+    }
+  ],
+  
+  "writers":
+  [
+    {
+      "command":
+      {
+        "name":"replace-text-regex",
+        "parameters": ["./ScreenSaver/ScreenSaver/Properties/AssemblyInfo.cs","\\d+\\.\\d+\\.\\d+\\.\\d+-[0-9a-zA-Z]+", "$$major$$.$$minor$$.$$build$$.$$revision$$-$$sha$$"]
+      }
+    },
+    {
+      "command":
+      {
+        "name":"replace-text-regex",
+        "parameters": ["./ScreenSaver/ScreenSaver/Properties/AssemblyInfo.cs","\\d+\\.\\d+\\.\\d+\\.\\d+", "$$major$$.$$minor$$.$$build$$.$$revision$$"]
+      }
+    },
+    {
+      "command":
+      {
+        "name":"replace-text-regex",
+        "parameters": ["./ScreenSaver/ScreenSaver.Test/Properties/AssemblyInfo.cs","\\d+\\.\\d+\\.\\d+\\.\\d+\\-[0-9a-zA-Z]+", "$$major$$.$$minor$$.$$build$$.$$revision$$-$$sha$$"]
+      }
+    },
+    {
+      "command":
+      {
+        "name":"replace-text-regex",
+        "parameters": ["./ScreenSaver/ScreenSaver.Test/Properties/AssemblyInfo.cs","\\d+\\.\\d+\\.\\d+\\.\\d+", "$$major$$.$$minor$$.$$build$$.$$revision$$"]
+      }
+    },
+    {
+      "command":
+      {
+        "name":"replace-text-regex",
+        "parameters": ["./ScreenSaver.nuspec","\\d+\\.\\d+\\.\\d+", "$$major$$.$$minor$$.$$revision$$"]
+      }
+    }
+  ]
+}
