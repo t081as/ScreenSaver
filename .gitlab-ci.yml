@@ -39,4 +39,5 @@ release:
 debug:
     stage: test
     script:
+        - tree ./
         - msbuild "ScreenSaver.sln" /p:Configuration="Debug" /p:Platform="Any CPU"
