@@ -46,7 +46,7 @@ namespace ScreenSaver
         private IScreenSaverConfiguration screenSaverConfiguration;
 
         /// <summary>
-        /// Provides a simple translation.
+        /// Provides simple translations.
         /// </summary>
         private ScreenSaverTranslation translation;
 
@@ -59,11 +59,17 @@ namespace ScreenSaver
         /// </summary>
         /// <param name="screenSaverConfiguration">The configuration of the screen saver.</param>
         /// <exception cref="ArgumentNullException"><c>screenSaverConfiguration</c> is null.</exception>
+        /// <exception cref="ArgumentNullException">A member of <c>screenSaverConfiguration</c> is null.</exception>
         public ScreenSaver(IScreenSaverConfiguration screenSaverConfiguration)
         {
             if (screenSaverConfiguration == null)
             {
                 throw new ArgumentNullException("screenSaverConfiguration");
+            }
+
+            if (screenSaverConfiguration.ScreenSaverName == null)
+            {
+                throw new ArgumentNullException("IScreenSaverConfiguration.ScreenSaverName");
             }
 
             this.translation = new ScreenSaverTranslation(CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
@@ -199,6 +205,12 @@ namespace ScreenSaver
             }
             else
             {
+                MessageBox.Show(
+                    this.translation.NoOptionsMessageTranslation,
+                    this.screenSaverConfiguration.ScreenSaverName,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
                 Environment.Exit(0);
             }
         }
