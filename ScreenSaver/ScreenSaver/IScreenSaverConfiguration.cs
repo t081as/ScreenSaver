@@ -53,16 +53,15 @@ namespace ScreenSaver
         /// <summary>
         /// Creates and returns a new instance of a <see cref="Control"/> used as a screen saver for the given screen.
         /// </summary>
-        /// <param name="screen">The screen that will host the <see cref="Control"/>.</param>
         /// <returns>A <see cref="Control"/> used as a screen saver for the given screen.</returns>
-        Control CreateScreenSaverControl(Screen screen);
+        Control CreateScreenSaverControl();
 
         /// <summary>
         /// Creates and returns a new instance of a <see cref="Control"/> used as a preview of the screen saver.
         /// </summary>
         /// <returns>
         /// A <see cref="Control"/> used as a preview of the screen saver or <c>null</c> if the screen saver control
-        /// of the primary screen shall be used instead.
+        /// of shall be used instead.
         /// </returns>
         Control CreatePreviewControl();
 

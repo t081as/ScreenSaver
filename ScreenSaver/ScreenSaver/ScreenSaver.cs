@@ -166,7 +166,20 @@ namespace ScreenSaver
         /// </summary>
         protected virtual void Show()
         {
-            throw new NotImplementedException();
+            foreach (Screen screen in Screen.AllScreens)
+            {
+                Control screenSaverControl = this.screenSaverConfiguration.CreateScreenSaverControl();
+
+                if (screenSaverControl == null)
+                {
+                    throw new ArgumentNullException("IScreenSaverConfiguration.CreateScreenSaverControl()");
+                }
+
+                ScreenSaverForm form = new ScreenSaverForm(screenSaverControl, screen);
+                form.Show();
+            }
+
+            Application.Run();
         }
 
         /// <summary>
@@ -179,7 +192,7 @@ namespace ScreenSaver
 
             if (previewControl == null)
             {
-                previewControl = this.screenSaverConfiguration.CreateScreenSaverControl(Screen.PrimaryScreen);
+                previewControl = this.screenSaverConfiguration.CreateScreenSaverControl();
             }
 
             if (previewControl != null)
