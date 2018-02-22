@@ -14,6 +14,9 @@ msbuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo ^
   ScreenSaver.sln
 if errorlevel 1 goto error
 
+echo Renaming executable
+move .\Build\Debug\ScreenSaver.Test.exe .\Build\Debug\ScreenSaver.Test.scr
+
 :success
 echo.
 echo Build successful
