@@ -62,6 +62,10 @@ namespace ScreenSaver
             this.Controls.Add(screenSaverControl);
             screenSaverControl.Dock = DockStyle.Fill;
 
+            screenSaverControl.MouseMove += this.ScreenSaverForm_MouseMove;
+            screenSaverControl.MouseClick += this.ScreenSaverForm_MouseClick;
+            screenSaverControl.KeyPress += this.ScreenSaverForm_KeyPress;
+
             Cursor.Hide();
         }
 
@@ -101,7 +105,7 @@ namespace ScreenSaver
                 this.originalLocation = e.Location;
             }
 
-            if (Math.Abs(e.X - this.originalLocation.X) > 20 || Math.Abs(e.Y - this.originalLocation.Y) > 20)
+            if (Math.Abs(e.X - this.originalLocation.X) > 40 || Math.Abs(e.Y - this.originalLocation.Y) > 40)
             {
                 Application.Exit();
             }

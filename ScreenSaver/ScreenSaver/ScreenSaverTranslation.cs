@@ -164,7 +164,7 @@ namespace ScreenSaver
         /// <summary>
         /// Adds the translations for the defined screen saver framework strings.
         /// </summary>
-        protected virtual void AddTranslations()
+        protected void AddTranslations()
         {
             // Default (English (en))
             this.okButtonTranslations.Add(this.DefaultLanguageCode, "Ok");

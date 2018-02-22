@@ -27,26 +27,48 @@
 
 #region Namespaces
 using System;
+using System.Drawing;
+using System.Windows.Forms;
 #endregion
 
 namespace ScreenSaver.Test
 {
     /// <summary>
-    /// Contains main entry point of the application.
+    /// A test control used by the screen saver.
     /// </summary>
-    public static class Program
+    public partial class ColorControl : UserControl
     {
+        #region Constants and Fields
+
+        /// <summary>
+        /// A random number generator.
+        /// </summary>
+        private Random rnd = new Random();
+
+        #endregion
+
         #region Methods
 
         /// <summary>
-        /// The main entry point of the application.
+        /// Initializes a new instance of the <see cref="ColorControl"/> class.
         /// </summary>
-        /// <param name="args">The command line arguments.</param>
-        [STAThread]
-        public static void Main(string[] args)
+        public ColorControl()
         {
-            ScreenSaver screenSaver = new ScreenSaver(new ScreenSaverTestConfiguration());
-            screenSaver.Run(args);
+            this.InitializeComponent();
+        }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Handles the <see cref="Timer.Tick"/> event.
+        /// </summary>
+        /// <param name="sender">The event sender.</param>
+        /// <param name="e">An empty <see cref="EventArgs"/>.</param>
+        protected virtual void TimerColor_Tick(object sender, EventArgs e)
+        {
+            this.BackColor = Color.FromArgb(this.rnd.Next(0, 256), this.rnd.Next(0, 256), this.rnd.Next(0, 256));
         }
 
         #endregion
