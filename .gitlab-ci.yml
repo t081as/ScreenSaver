@@ -24,7 +24,7 @@ release:
         paths:
           - ./*.nupkg
     script:
-        - mono packages/Veronique.1.1.0/tools/Veronique.exe
+        - mono Build/Packages/Veronique.1.1.0/tools/Veronique.exe
         - msbuild "ScreenSaver.sln" /p:Configuration="Release" /p:Platform="Any CPU" /p:TargetFrameworkVersion=v4.5 /p:OutputPath="..\..\Build\Release\net45"
         - msbuild "ScreenSaver.sln" /p:Configuration="Release" /p:Platform="Any CPU" /p:TargetFrameworkVersion=v4.5.1 /p:OutputPath="..\..\Build\Release\net451"
         - msbuild "ScreenSaver.sln" /p:Configuration="Release" /p:Platform="Any CPU" /p:TargetFrameworkVersion=v4.5.2 /p:OutputPath="..\..\Build\Release\net452"
