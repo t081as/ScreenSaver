@@ -11,7 +11,7 @@ ScreenSaver is a .NET library for creating screen savers for the Microsoft Windo
 ## Installation
 
 ### Option 1: NuGet
-NuGet packages will be available later.
+NuGet packages are available [here](https://www.nuget.org/packages/ScreenSaver/).
 
 ### Option 1: Binary
 Stable versions can be downloaded [here](https://gitlab.com/tobiaskoch/ScreenSaver/pipelines?scope=tags).
