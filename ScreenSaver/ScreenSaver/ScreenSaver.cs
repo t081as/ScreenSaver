@@ -129,9 +129,7 @@ namespace ScreenSaver
 
                     if (args.Length > 1)
                     {
-                        int parentWindowHandle;
-
-                        if (int.TryParse(args[1].Trim(), out parentWindowHandle))
+                        if (int.TryParse(args[1].Trim(), out int parentWindowHandle))
                         {
                             this.Preview(new IntPtr(parentWindowHandle));
                         }
