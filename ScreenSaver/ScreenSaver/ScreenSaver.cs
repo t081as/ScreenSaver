@@ -27,7 +27,10 @@
 
 #region Namespaces
 using System;
+using System.ComponentModel;
+using System.Drawing;
 using System.Globalization;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 #endregion
 
@@ -195,7 +198,12 @@ namespace ScreenSaver
 
             if (previewControl != null)
             {
-                throw new NotImplementedException();
+                PreviewForm form = new PreviewForm(previewControl);
+                form.CreateControl();
+
+                this.DockPreviewWindow(form, parentWindowHandle);
+
+                Application.Run(form);
             }
             else
             {
@@ -224,6 +232,46 @@ namespace ScreenSaver
 
                 Environment.Exit(0);
             }
+        }
+
+        /// <summary>
+        /// Shows the screen saver preview in the area provided by the operating system.
+        /// </summary>
+        /// <param name="previewWindow">The screen saver preview window.</param>
+        /// <param name="parentWindowHandle">The handle provided by the operating system.</param>
+        protected virtual void DockPreviewWindow(Form previewWindow, IntPtr parentWindowHandle)
+        {
+            // Set new parent window
+            if (NativeMethods.SetParent(previewWindow.Handle, parentWindowHandle) == IntPtr.Zero)
+            {
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+            }
+
+            // Change style of child window
+            int windowStyle = NativeMethods.GetWindowLong(previewWindow.Handle, NativeMethods.GWL_STYLE);
+
+            if (windowStyle == 0)
+            {
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+            }
+
+            windowStyle = windowStyle | NativeMethods.WS_CHILD;
+
+            if (NativeMethods.SetWindowLong(previewWindow.Handle, NativeMethods.GWL_STYLE, windowStyle) == 0)
+            {
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+            }
+
+            // Set position and size of child window
+            Rectangle rect;
+
+            if (NativeMethods.GetClientRect(parentWindowHandle, out rect) == false)
+            {
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+            }
+
+            previewWindow.Location = new Point(0, 0);
+            previewWindow.Bounds = rect;
         }
 
         #endregion
