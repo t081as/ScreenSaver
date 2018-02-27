@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigurationControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ConfigurationControl.Designer.cs">
+      <DependentUpon>ConfigurationControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConfigurationForm.cs">
       <SubType>Form</SubType>
     </Compile>

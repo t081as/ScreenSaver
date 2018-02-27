@@ -25,25 +25,37 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
-#region Namespaces
-using System.Windows.Forms;
-#endregion
-
 namespace ScreenSaver
 {
-    /// <summary>
-    /// The <see cref="Form"/> hosting the configuration control.
-    /// </summary>
-    internal partial class ConfigurationForm : Form
+    partial class ConfigurationControl
     {
-        #region Constructors and Destructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ConfigurationForm"/> class.
+        /// <summary> 
+        /// Erforderliche Designervariable.
         /// </summary>
-        public ConfigurationForm()
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Verwendete Ressourcen bereinigen.
+        /// </summary>
+        /// <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
+        protected override void Dispose(bool disposing)
         {
-            this.InitializeComponent();
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Vom Komponenten-Designer generierter Code
+
+        /// <summary> 
+        /// Erforderliche Methode für die Designerunterstützung. 
+        /// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            components = new System.ComponentModel.Container();
         }
 
         #endregion

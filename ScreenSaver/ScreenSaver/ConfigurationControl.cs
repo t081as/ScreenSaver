@@ -32,19 +32,33 @@ using System.Windows.Forms;
 namespace ScreenSaver
 {
     /// <summary>
-    /// The <see cref="Form"/> hosting the configuration control.
+    /// The abstract base class for a configuration control.
     /// </summary>
-    internal partial class ConfigurationForm : Form
+    public abstract partial class ConfigurationControl : Control
     {
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ConfigurationForm"/> class.
+        /// Initializes a new instance of the <see cref="ConfigurationControl"/> class.
         /// </summary>
-        public ConfigurationForm()
+        public ConfigurationControl()
         {
             this.InitializeComponent();
         }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// The application shall load and display stored configuration values.
+        /// </summary>
+        public abstract void Load();
+
+        /// <summary>
+        /// The aplication shall store the configuration values.
+        /// </summary>
+        public abstract void Save();
 
         #endregion
     }
