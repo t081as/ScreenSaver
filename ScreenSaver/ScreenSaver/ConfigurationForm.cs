@@ -36,14 +36,53 @@ namespace ScreenSaver
     /// </summary>
     internal partial class ConfigurationForm : Form
     {
+        #region Constants and Fields
+
+        /// <summary>
+        /// Provides simple translations.
+        /// </summary>
+        private ScreenSaverTranslation translation;
+
+        /// <summary>
+        /// The <see cref="ConfigurationControl"/> that shall be displayed.
+        /// </summary>
+        private ConfigurationControl configurationControl;
+
+        #endregion
+
         #region Constructors and Destructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConfigurationForm"/> class.
         /// </summary>
-        public ConfigurationForm()
+        /// <param name="translation">The translation provider.</param>
+        /// <param name="configurationControl">The <see cref="ConfigurationControl"/> that shall be displayed.</param>
+        public ConfigurationForm(ScreenSaverTranslation translation, ConfigurationControl configurationControl)
         {
             this.InitializeComponent();
+            this.translation = translation;
+            this.configurationControl = configurationControl;
+
+            this.tableLayoutPanel.Controls.Add(configurationControl, 0, 0);
+            configurationControl.Dock = DockStyle.Fill;
+
+            this.buttonOk.Text = translation.OkButtonTranslation;
+            this.buttonCancel.Text = translation.CancelButtonTranslation;
+        }
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Gets the configuration control.
+        /// </summary>
+        public ConfigurationControl ConfigurationControl
+        {
+            get
+            {
+                return this.configurationControl;
+            }
         }
 
         #endregion

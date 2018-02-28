@@ -82,7 +82,7 @@ namespace ScreenSaver.Test
         /// A <see cref="Control"/> used to configure the screen saver or <c>null</c> if the screen saver
         /// can't be configured.
         /// </returns>
-        public Control CreateConfigurationControl()
+        public ConfigurationControl CreateConfigurationControl()
         {
             return null;
         }

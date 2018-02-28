@@ -218,11 +218,20 @@ namespace ScreenSaver
         /// </summary>
         protected virtual void Configure()
         {
-            Control configurationControl = this.screenSaverConfiguration.CreateConfigurationControl();
+            ConfigurationControl configurationControl = this.screenSaverConfiguration.CreateConfigurationControl();
 
             if (configurationControl != null)
             {
-                throw new NotImplementedException();
+                ConfigurationForm form = new ConfigurationForm(this.translation, configurationControl);
+                form.CreateControl();
+                form.Text = this.screenSaverConfiguration.ScreenSaverName;
+
+                configurationControl.Load();
+
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    configurationControl.Save();
+                }
             }
             else
             {

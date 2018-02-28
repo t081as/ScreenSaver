@@ -56,7 +56,7 @@ namespace ScreenSaver
         public abstract void Load();
 
         /// <summary>
-        /// The aplication shall store the configuration values.
+        /// The aplication shall store configuration values.
         /// </summary>
         public abstract void Save();
 
