@@ -25,45 +25,44 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
-#region Namespaces
-using System.Windows.Forms;
-#endregion
-
-namespace ScreenSaver
+namespace ScreenSaver.Test
 {
-    /// <summary>
-    /// The abstract base class for a configuration control.
-    /// </summary>
-    public partial class ConfigurationControl : UserControl
+    partial class SimpleConfigurationControl
     {
-        #region Constructors and Destructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ConfigurationControl"/> class.
+        /// <summary> 
+        /// Erforderliche Designervariable.
         /// </summary>
-        public ConfigurationControl()
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Verwendete Ressourcen bereinigen.
+        /// </summary>
+        /// <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
+        protected override void Dispose(bool disposing)
         {
-            this.InitializeComponent();
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
         }
 
-        #endregion
+        #region Vom Komponenten-Designer generierter Code
 
-        #region Methods
-
-        /// <summary>
-        /// The application shall load and display stored configuration values.
+        /// <summary> 
+        /// Erforderliche Methode für die Designerunterstützung. 
+        /// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
         /// </summary>
-        public virtual void LoadConfiguration()
+        private void InitializeComponent()
         {
-            // No action
-        }
+            this.SuspendLayout();
+            // 
+            // SimpleConfigurationControl
+            // 
+            this.Name = "SimpleConfigurationControl";
+            this.Size = new System.Drawing.Size(400, 400);
+            this.ResumeLayout(false);
 
-        /// <summary>
-        /// The aplication shall store configuration values.
-        /// </summary>
-        public virtual void SaveConfiguration()
-        {
-            // No action
         }
 
         #endregion

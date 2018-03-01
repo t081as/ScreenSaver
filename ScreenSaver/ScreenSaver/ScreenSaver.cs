@@ -226,11 +226,11 @@ namespace ScreenSaver
                 form.CreateControl();
                 form.Text = this.screenSaverConfiguration.ScreenSaverName;
 
-                configurationControl.Load();
+                configurationControl.LoadConfiguration();
 
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    configurationControl.Save();
+                    configurationControl.SaveConfiguration();
                 }
             }
             else

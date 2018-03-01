@@ -63,6 +63,9 @@ namespace ScreenSaver
             this.translation = translation;
             this.configurationControl = configurationControl;
 
+            this.Width = configurationControl.Width;
+            this.Height = configurationControl.Height + this.flowLayoutPanel.Height;
+
             this.tableLayoutPanel.Controls.Add(configurationControl, 0, 0);
             configurationControl.Dock = DockStyle.Fill;
 

@@ -86,6 +86,8 @@ namespace ScreenSaver
             this.okButtonTranslations = new Dictionary<string, string>();
             this.cancelButtonTranslations = new Dictionary<string, string>();
             this.noOptionsTranslations = new Dictionary<string, string>();
+
+            this.AddTranslations();
         }
 
         #endregion

@@ -26,28 +26,24 @@
 #endregion
 
 #region Namespaces
-using System;
 using System.Windows.Forms;
 #endregion
 
 namespace ScreenSaver.Test
 {
     /// <summary>
-    /// The configuration of the test screen saver.
+    /// Provides the configuration for the screen saver.
     /// </summary>
-    internal class ScreenSaverTestConfiguration : IScreenSaverConfiguration
+    public partial class SimpleConfigurationControl : ConfigurationControl
     {
-        #region Properties
+        #region Constructors and Destructors
 
         /// <summary>
-        /// Gets the name of the screen saver.
+        /// Initializes a new instance of the <see cref="SimpleConfigurationControl"/> class.
         /// </summary>
-        public string ScreenSaverName
+        public SimpleConfigurationControl()
         {
-            get
-            {
-                return "Test";
-            }
+            this.InitializeComponent();
         }
 
         #endregion
@@ -55,36 +51,19 @@ namespace ScreenSaver.Test
         #region Methods
 
         /// <summary>
-        /// Creates and returns a new instance of a <see cref="Control"/> used as a screen saver for the given screen.
+        /// The application shall load and display stored configuration values.
         /// </summary>
-        /// <returns>A <see cref="Control"/> used as a screen saver for the given screen.</returns>
-        public Control CreateScreenSaverControl()
+        public override void LoadConfiguration()
         {
-            return new ColorControl();
+            // ...
         }
 
         /// <summary>
-        /// Creates and returns a new instance of a <see cref="Control"/> used as a preview of the screen saver.
+        /// The aplication shall store configuration values.
         /// </summary>
-        /// <returns>
-        /// A <see cref="Control"/> used as a preview of the screen saver or <c>null</c> if the screen saver control
-        /// of shall be used instead.
-        /// </returns>
-        public Control CreatePreviewControl()
+        public override void SaveConfiguration()
         {
-            return null;
-        }
-
-        /// <summary>
-        /// Creates and returns a new instance of a <see cref="Control"/> used to configure the screen saver.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="Control"/> used to configure the screen saver or <c>null</c> if the screen saver
-        /// can't be configured.
-        /// </returns>
-        public ConfigurationControl CreateConfigurationControl()
-        {
-            return new SimpleConfigurationControl();
+            // ...
         }
 
         #endregion
