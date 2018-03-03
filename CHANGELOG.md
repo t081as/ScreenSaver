@@ -1,4 +1,4 @@
-## X.X (XXXX-XX-XX)
+## 0.3 (2018-03-03)
 
 - Configuration interface added
 - Nuget specification updated
