@@ -14,8 +14,11 @@ msbuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo ^
   ScreenSaver.sln
 if errorlevel 1 goto error
 
+echo Merging il code
+.\Build\Packages\ILMerge.2.14.1208\tools\ILMerge.exe .\Build\Debug\ScreenSaver.Test.exe .\Build\Debug\ScreenSaver.dll /out:.\Build\Debug\ScreenSaver.Merged.exe
+
 echo Renaming executable
-move .\Build\Debug\ScreenSaver.Test.exe .\Build\Debug\ScreenSaver.Test.scr
+move .\Build\Debug\ScreenSaver.Merged.exe .\Build\Debug\ScreenSaver.scr
 
 :success
 echo.
