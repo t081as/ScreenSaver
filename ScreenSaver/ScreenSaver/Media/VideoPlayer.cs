@@ -27,6 +27,8 @@
 
 #region Namespaces
 using System;
+using System.Text;
+using System.Threading;
 #endregion
 
 namespace ScreenSaver.Media
@@ -36,5 +38,40 @@ namespace ScreenSaver.Media
     /// </summary>
     public class VideoPlayer
     {
+        #region Constants and Fields
+
+        #endregion
+
+        #region Constructors and Destructors
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Sends the given command to the multimedia interface.
+        /// </summary>
+        /// <param name="command">The command that shall be sent.</param>
+        /// <exception cref="NotSupportedException">Current thread must be set to single thread apartment mode.</exception>
+        /// <exception cref="ApplicationException">An error occured while sending the command.</exception>
+        private static void SendCommand(string command)
+        {
+            if (Thread.CurrentThread.GetApartmentState() != ApartmentState.STA)
+            {
+                throw new NotSupportedException("Current thread must be set to single thread apartment mode");
+            }
+
+            int ret = NativeMethods.MciSendString(command, null, 0, IntPtr.Zero);
+
+            if (ret != 0)
+            {
+                StringBuilder errText = new StringBuilder(256);
+                NativeMethods.MciGetErrorString(ret, errText, 256);
+
+                throw new ApplicationException(string.Format("{0} ({1})", errText.ToString(), ret.ToString()));
+            }
+        }
+
+        #endregion
     }
 }

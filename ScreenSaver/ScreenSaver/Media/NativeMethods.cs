@@ -29,6 +29,7 @@
 using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Text;
 #endregion
 
 namespace ScreenSaver.Media
@@ -38,10 +39,6 @@ namespace ScreenSaver.Media
     /// </summary>
     internal class NativeMethods
     {
-        #region Constants and Fields
-
-        #endregion
-
         #region Constructors and Destructors
 
         /// <summary>
@@ -54,6 +51,27 @@ namespace ScreenSaver.Media
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// The mciSendString function sends a command string to an MCI device.
+        /// </summary>
+        /// <param name="cmd">The MCI command string.</param>
+        /// <param name="ret">A buffer that receives return information.</param>
+        /// <param name="retLen">The size of the return buffer.</param>
+        /// <param name="hwnd">A handle to a callback window.</param>
+        /// <returns>Returns zero if successful or an error otherwise.</returns>
+        [DllImport("winmm.dll", CharSet = CharSet.Unicode, EntryPoint = "mciSendString")]
+        public static extern int MciSendString(string cmd, StringBuilder ret, int retLen, IntPtr hwnd);
+
+        /// <summary>
+        /// Retrieves a string that describes the specified MCI error code.
+        /// </summary>
+        /// <param name="errCode">The error return code.</param>
+        /// <param name="errText">A buffer for the text describing the error.</param>
+        /// <param name="errLen">The length of the buffer.</param>
+        /// <returns>Returns TRUE if successful or FALSE if the error code is not known.</returns>
+        [DllImport("winmm.dll", CharSet = CharSet.Unicode, EntryPoint = "mciGetErrorString")]
+        public static extern int MciGetErrorString(int errCode, StringBuilder errText, int errLen);
 
         #endregion
     }
