@@ -60,6 +60,8 @@
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IScreenSaverConfiguration.cs" />
+    <Compile Include="Media\NativeMethods.cs" />
+    <Compile Include="Media\VideoPlayer.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="PreviewForm.cs">
       <SubType>Form</SubType>
@@ -100,5 +102,6 @@
       <DependentUpon>ScreenSaverForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
