@@ -163,6 +163,20 @@ namespace ScreenSaver.Media
         }
 
         /// <summary>
+        /// Starts video playback in a loop.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">File has not been opened.</exception>
+        public void PlayLoop()
+        {
+            if (!this.isOpen)
+            {
+                throw new InvalidOperationException("File has not been opened");
+            }
+
+            SendCommand(string.Format("PLAY {0} REPEAT", this.identifier));
+        }
+
+        /// <summary>
         /// Stops video playback.
         /// </summary>
         /// <exception cref="InvalidOperationException">File has not been opened.</exception>
