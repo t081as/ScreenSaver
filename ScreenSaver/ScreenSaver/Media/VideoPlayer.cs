@@ -177,6 +177,34 @@ namespace ScreenSaver.Media
         }
 
         /// <summary>
+        /// Pauses video playback.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">File has not been opened.</exception>
+        public void Pause()
+        {
+            if (!this.isOpen)
+            {
+                throw new InvalidOperationException("File has not been opened");
+            }
+
+            SendCommand(string.Format("PAUSE {0}", this.identifier));
+        }
+
+        /// <summary>
+        /// Resumes video playback.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">File has not been opened.</exception>
+        public void Resume()
+        {
+            if (!this.isOpen)
+            {
+                throw new InvalidOperationException("File has not been opened");
+            }
+
+            SendCommand(string.Format("RESUME {0}", this.identifier));
+        }
+
+        /// <summary>
         /// Stops video playback.
         /// </summary>
         /// <exception cref="InvalidOperationException">File has not been opened.</exception>
