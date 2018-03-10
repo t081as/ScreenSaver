@@ -219,6 +219,20 @@ namespace ScreenSaver.Media
         }
 
         /// <summary>
+        /// Resizes the video to the parent size.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">File has not been opened.</exception>
+        public void Resize()
+        {
+            if (!this.isOpen)
+            {
+                throw new InvalidOperationException("File has not been opened");
+            }
+
+            SendCommand(string.Format("PUT {0} WINDOW AT 0 0 {1} {2}", this.identifier, this.parent.Width, this.parent.Height));
+        }
+
+        /// <summary>
         /// Sends the given command to the multimedia interface.
         /// </summary>
         /// <param name="command">The command that shall be sent.</param>
