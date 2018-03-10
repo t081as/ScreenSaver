@@ -28,7 +28,9 @@
 #region Namespaces
 using System;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
+using System.Windows.Forms;
 #endregion
 
 namespace ScreenSaver.Media
@@ -40,9 +42,69 @@ namespace ScreenSaver.Media
     {
         #region Constants and Fields
 
+        /// <summary>
+        /// Contains the unique identifier of this mci instance.
+        /// </summary>
+        private string identifier;
+
+        /// <summary>
+        /// References the control used for video playback.
+        /// </summary>
+        private Control parent;
+
+        /// <summary>
+        /// Indicates if a file has been opened.
+        /// </summary>
+        private bool isOpened;
+
         #endregion
 
         #region Constructors and Destructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VideoPlayer"/> class.
+        /// </summary>
+        /// <param name="identifier">The identifier of this instance.</param>
+        /// <param name="parent">The <see cref="Control"/> that shall be used for video playback.</param>
+        /// <exception cref="NotSupportedException">Current thread must be set to single thread apartment mode.</exception>
+        /// <exception cref="ArgumentException">The identifier is invalid.</exception>
+        /// <exception cref="ArgumentNullException"><c>parent</c> is null.</exception>
+        public VideoPlayer(string identifier, Control parent)
+        {
+            if (Thread.CurrentThread.GetApartmentState() != ApartmentState.STA)
+            {
+                throw new NotSupportedException("Current thread must be set to single thread apartment mode");
+            }
+
+            if (string.IsNullOrEmpty(identifier) || !Regex.IsMatch(identifier, "([A-Z])+"))
+            {
+                throw new ArgumentException("Identifier invalid");
+            }
+
+            if (parent == null)
+            {
+                throw new ArgumentNullException(nameof(parent));
+            }
+
+            this.identifier = identifier;
+            this.parent = parent;
+            this.isOpened = false;
+        }
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Gets a value indicating whether a file has been opened.
+        /// </summary>
+        public bool IsOpened
+        {
+            get
+            {
+                return this.isOpened;
+            }
+        }
 
         #endregion
 
