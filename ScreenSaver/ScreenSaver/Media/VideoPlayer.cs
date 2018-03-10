@@ -27,6 +27,7 @@
 
 #region Namespaces
 using System;
+using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -55,7 +56,7 @@ namespace ScreenSaver.Media
         /// <summary>
         /// Indicates if a file has been opened.
         /// </summary>
-        private bool isOpened;
+        private bool isOpen;
 
         #endregion
 
@@ -88,7 +89,7 @@ namespace ScreenSaver.Media
 
             this.identifier = identifier;
             this.parent = parent;
-            this.isOpened = false;
+            this.isOpen = false;
         }
 
         #endregion
@@ -98,17 +99,54 @@ namespace ScreenSaver.Media
         /// <summary>
         /// Gets a value indicating whether a file has been opened.
         /// </summary>
-        public bool IsOpened
+        public bool IsOpen
         {
             get
             {
-                return this.isOpened;
+                return this.isOpen;
             }
         }
 
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Opens a video file for playback.
+        /// </summary>
+        /// <param name="fileName">The path and filename of the file.</param>
+        /// <exception cref="InvalidOperationException">A file has already been opened.</exception>
+        /// <exception cref="FileNotFoundException"><c>file</c> does not exist.</exception>
+        public void Open(string fileName)
+        {
+            if (this.isOpen)
+            {
+                throw new InvalidOperationException("File has already been opened");
+            }
+
+            if (!File.Exists(fileName))
+            {
+                throw new FileNotFoundException("File not found", fileName);
+            }
+
+            SendCommand(string.Format("OPEN \"{0}\" ALIAS {1} PARENT {2} STYLE CHILD", fileName, this.identifier, this.parent.Handle));
+            this.isOpen = true;
+        }
+
+        /// <summary>
+        /// Closes the video file.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">File has not been opened.</exception>
+        public void Close()
+        {
+            if (!this.isOpen)
+            {
+                throw new InvalidOperationException("File has not been opened");
+            }
+
+            SendCommand(string.Format("CLOSE {0}", this.identifier));
+            this.isOpen = false;
+        }
 
         /// <summary>
         /// Sends the given command to the multimedia interface.
