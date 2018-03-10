@@ -149,6 +149,34 @@ namespace ScreenSaver.Media
         }
 
         /// <summary>
+        /// Starts video playback.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">File has not been opened.</exception>
+        public void Play()
+        {
+            if (!this.isOpen)
+            {
+                throw new InvalidOperationException("File has not been opened");
+            }
+
+            SendCommand(string.Format("PLAY {0}", this.identifier));
+        }
+
+        /// <summary>
+        /// Stops video playback.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">File has not been opened.</exception>
+        public void Stop()
+        {
+            if (!this.isOpen)
+            {
+                throw new InvalidOperationException("File has not been opened");
+            }
+
+            SendCommand(string.Format("STOP {0}", this.identifier));
+        }
+
+        /// <summary>
         /// Sends the given command to the multimedia interface.
         /// </summary>
         /// <param name="command">The command that shall be sent.</param>
