@@ -233,6 +233,34 @@ namespace ScreenSaver.Media
         }
 
         /// <summary>
+        /// Mutes the video.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">File has not been opened.</exception>
+        public void Mute()
+        {
+            if (!this.isOpen)
+            {
+                throw new InvalidOperationException("File has not been opened");
+            }
+
+            SendCommand(string.Format("SET {0} AUDIO ALL OFF", this.identifier));
+        }
+
+        /// <summary>
+        /// Unmutes the video.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">File has not been opened.</exception>
+        public void Unmute()
+        {
+            if (!this.isOpen)
+            {
+                throw new InvalidOperationException("File has not been opened");
+            }
+
+            SendCommand(string.Format("SET {0} AUDIO ALL ON", this.identifier));
+        }
+
+        /// <summary>
         /// Sends the given command to the multimedia interface.
         /// </summary>
         /// <param name="command">The command that shall be sent.</param>
