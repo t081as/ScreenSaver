@@ -64,6 +64,12 @@
     <Compile Include="SimpleConfigurationControl.Designer.cs">
       <DependentUpon>SimpleConfigurationControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="VideoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VideoControl.Designer.cs">
+      <DependentUpon>VideoControl.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ColorControl.resx">
       <DependentUpon>ColorControl.cs</DependentUpon>
     </EmbeddedResource>
