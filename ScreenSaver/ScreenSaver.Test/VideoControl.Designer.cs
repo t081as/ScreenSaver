@@ -28,10 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.labelErrorMessage = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // labelErrorMessage
+            // 
+            this.labelErrorMessage.Location = new System.Drawing.Point(3, 0);
+            this.labelErrorMessage.Name = "labelErrorMessage";
+            this.labelErrorMessage.Size = new System.Drawing.Size(100, 23);
+            this.labelErrorMessage.TabIndex = 0;
+            this.labelErrorMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelErrorMessage.Visible = false;
+            // 
+            // VideoControl
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.labelErrorMessage);
+            this.Name = "VideoControl";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Label labelErrorMessage;
     }
 }

@@ -28,6 +28,7 @@
 #region Namespaces
 using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using ScreenSaver.Media;
 #endregion
@@ -39,6 +40,15 @@ namespace ScreenSaver.Test
     /// </summary>
     public partial class VideoControl : UserControl
     {
+        #region Constants and Fields
+
+        /// <summary>
+        /// Reference to the video player class.
+        /// </summary>
+        private VideoPlayer player;
+
+        #endregion
+
         #region Constructors and Destructors
 
         /// <summary>
@@ -47,6 +57,33 @@ namespace ScreenSaver.Test
         public VideoControl()
         {
             this.InitializeComponent();
+            this.CreateControl();
+            this.player = new VideoPlayer("SCR", this);
+
+            string videoFileName = Environment.GetEnvironmentVariable("TESTVIDEO");
+
+            if (string.IsNullOrEmpty(videoFileName))
+            {
+                this.labelErrorMessage.Dock = DockStyle.Fill;
+                this.labelErrorMessage.Visible = true;
+                this.labelErrorMessage.Text = "Please set environment variable %TESTVIDEO%: path and filename of video file";
+            }
+            else
+            {
+                if (!File.Exists(videoFileName))
+                {
+                    this.labelErrorMessage.Dock = DockStyle.Fill;
+                    this.labelErrorMessage.Visible = true;
+                    this.labelErrorMessage.Text = $"PEnvironment variable %TESTVIDEO%: file {videoFileName} not found";
+                }
+                else
+                {
+                    this.player.Open(videoFileName);
+                    this.player.Resize();
+                    this.player.Mute();
+                    this.player.PlayLoop();
+                }
+            }
         }
 
         #endregion
