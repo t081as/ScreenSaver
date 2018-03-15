@@ -27,6 +27,7 @@
 
 #region Namespaces
 using System;
+using System.IO;
 using System.Windows.Forms;
 #endregion
 
@@ -60,7 +61,26 @@ namespace ScreenSaver.Test
         /// <returns>A <see cref="Control"/> used as a screen saver for the given screen.</returns>
         public Control CreateScreenSaverControl()
         {
-            return new ColorControl();
+            int screenSaverType = -1;
+            string configurationFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), SimpleConfigurationControl.DefaultConfigurationFileName);
+
+            try
+            {
+                screenSaverType = int.Parse(File.ReadAllText(configurationFileName).Trim());
+            }
+            catch
+            {
+                screenSaverType = -1;
+            }
+
+            switch (screenSaverType)
+            {
+                case 1:
+                    return new VideoControl();
+
+                default:
+                    return new ColorControl();
+            }
         }
 
         /// <summary>

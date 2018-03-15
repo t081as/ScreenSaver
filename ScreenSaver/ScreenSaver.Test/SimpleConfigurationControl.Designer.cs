@@ -55,16 +55,32 @@ namespace ScreenSaver.Test
         /// </summary>
         private void InitializeComponent()
         {
+            this.comboBoxType = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
+            // 
+            // comboBoxType
+            // 
+            this.comboBoxType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxType.FormattingEnabled = true;
+            this.comboBoxType.Items.AddRange(new object[] {
+            "Colors",
+            "Video"});
+            this.comboBoxType.Location = new System.Drawing.Point(3, 3);
+            this.comboBoxType.Name = "comboBoxType";
+            this.comboBoxType.Size = new System.Drawing.Size(394, 21);
+            this.comboBoxType.TabIndex = 0;
             // 
             // SimpleConfigurationControl
             // 
+            this.Controls.Add(this.comboBoxType);
             this.Name = "SimpleConfigurationControl";
-            this.Size = new System.Drawing.Size(400, 400);
+            this.Size = new System.Drawing.Size(400, 98);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.ComboBox comboBoxType;
     }
 }

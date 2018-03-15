@@ -26,6 +26,8 @@
 #endregion
 
 #region Namespaces
+using System;
+using System.IO;
 using System.Windows.Forms;
 #endregion
 
@@ -36,6 +38,20 @@ namespace ScreenSaver.Test
     /// </summary>
     public partial class SimpleConfigurationControl : ConfigurationControl
     {
+        #region Constants and Fields
+
+        /// <summary>
+        /// The default name of the simple configuration file used for this test screen saver.
+        /// </summary>
+        public const string DefaultConfigurationFileName = ".screensavertest";
+
+        /// <summary>
+        /// The path and filename of the simple configuration file.
+        /// </summary>
+        private string configurationFileName;
+
+        #endregion
+
         #region Constructors and Destructors
 
         /// <summary>
@@ -44,6 +60,7 @@ namespace ScreenSaver.Test
         public SimpleConfigurationControl()
         {
             this.InitializeComponent();
+            this.configurationFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), DefaultConfigurationFileName);
         }
 
         #endregion
@@ -55,7 +72,14 @@ namespace ScreenSaver.Test
         /// </summary>
         public override void LoadConfiguration()
         {
-            // ...
+            try
+            {
+                this.comboBoxType.SelectedIndex = int.Parse(File.ReadAllText(this.configurationFileName).Trim());
+            }
+            catch
+            {
+                this.comboBoxType.SelectedIndex = -1;
+            }
         }
 
         /// <summary>
@@ -63,7 +87,7 @@ namespace ScreenSaver.Test
         /// </summary>
         public override void SaveConfiguration()
         {
-            // ...
+            File.WriteAllText(this.configurationFileName, this.comboBoxType.SelectedIndex.ToString());
         }
 
         #endregion
