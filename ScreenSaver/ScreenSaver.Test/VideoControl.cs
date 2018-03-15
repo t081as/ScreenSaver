@@ -74,7 +74,7 @@ namespace ScreenSaver.Test
                 {
                     this.labelErrorMessage.Dock = DockStyle.Fill;
                     this.labelErrorMessage.Visible = true;
-                    this.labelErrorMessage.Text = $"PEnvironment variable %TESTVIDEO%: file {videoFileName} not found";
+                    this.labelErrorMessage.Text = $"Environment variable %TESTVIDEO%: file {videoFileName} not found";
                 }
                 else
                 {
