@@ -32,7 +32,7 @@ using System;
 namespace ScreenSaver.Test
 {
     /// <summary>
-    /// Contains main entry point of the application.
+    /// Contains the main entry point of the application.
     /// </summary>
     public static class Program
     {
