@@ -79,11 +79,25 @@ namespace ScreenSaver.Test
                 else
                 {
                     this.player.Open(videoFileName);
-                    this.player.Resize();
                     this.player.Mute();
                     this.player.PlayLoop();
+                    this.player.Resize();
                 }
             }
+        }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Handles the Resize event of this control.
+        /// </summary>
+        /// <param name="sender">The event source.</param>
+        /// <param name="e">An empty <see cref="EventArgs"/>.</param>
+        private void VideoControl_Resize(object sender, EventArgs e)
+        {
+            this.player.Resize();
         }
 
         #endregion

@@ -46,6 +46,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.labelErrorMessage);
             this.Name = "VideoControl";
+            this.Resize += new System.EventHandler(this.VideoControl_Resize);
             this.ResumeLayout(false);
 
         }
