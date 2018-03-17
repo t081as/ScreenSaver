@@ -1,4 +1,4 @@
-## 0.X (XXXX-XX-XX)
+## 0.4 (2018-03-17)
 
 - Video player added
 - Configuration dialog size bug fixed
