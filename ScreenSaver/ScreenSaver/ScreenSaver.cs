@@ -120,7 +120,7 @@ namespace ScreenSaver
                 command = args[0].Trim().ToLower();
             }
 
-            if (command.Length > 0)
+            if (command.Length > 2)
             {
                 command = command.Substring(0, 2);
             }
