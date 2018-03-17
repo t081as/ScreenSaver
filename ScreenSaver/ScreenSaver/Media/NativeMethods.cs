@@ -60,7 +60,7 @@ namespace ScreenSaver.Media
         /// <param name="retLen">The size of the return buffer.</param>
         /// <param name="hwnd">A handle to a callback window.</param>
         /// <returns>Returns zero if successful or an error otherwise.</returns>
-        [DllImport("winmm.dll", CharSet = CharSet.Unicode, EntryPoint = "mciSendString")]
+        [DllImport("winmm.dll", CharSet = CharSet.Auto, EntryPoint = "mciSendString")]
         public static extern int MciSendString(string cmd, StringBuilder ret, int retLen, IntPtr hwnd);
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace ScreenSaver.Media
         /// <param name="errText">A buffer for the text describing the error.</param>
         /// <param name="errLen">The length of the buffer.</param>
         /// <returns>Returns TRUE if successful or FALSE if the error code is not known.</returns>
-        [DllImport("winmm.dll", CharSet = CharSet.Unicode, EntryPoint = "mciGetErrorString")]
+        [DllImport("winmm.dll", CharSet = CharSet.Auto, EntryPoint = "mciGetErrorString")]
         public static extern int MciGetErrorString(int errCode, StringBuilder errText, int errLen);
 
         #endregion
