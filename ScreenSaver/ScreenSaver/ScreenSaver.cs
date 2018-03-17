@@ -120,6 +120,11 @@ namespace ScreenSaver
                 command = args[0].Trim().ToLower();
             }
 
+            if (command.Length > 0)
+            {
+                command = command.Substring(0, 2);
+            }
+
             switch (command)
             {
                 case "/s":
