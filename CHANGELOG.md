@@ -1,5 +1,6 @@
 ## 0.X (XXXX-XX-XX)
 
+- Video player added
 - Configuration dialog size bug fixed
 
 ## 0.3 (2018-03-03)
