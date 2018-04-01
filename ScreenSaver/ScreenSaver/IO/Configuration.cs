@@ -127,7 +127,7 @@ namespace ScreenSaver.IO
             }
             catch (Exception ex)
             {
-                throw new IOException("Error while saving the data", ex);
+                throw new IOException("Error while loading the data", ex);
             }
         }
 
