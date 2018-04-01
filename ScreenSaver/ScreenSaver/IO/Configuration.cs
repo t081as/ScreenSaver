@@ -29,6 +29,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Serialization.Json;
 #endregion
 
 namespace ScreenSaver.IO
@@ -86,7 +87,19 @@ namespace ScreenSaver.IO
                 throw new ArgumentNullException(nameof(configuration));
             }
 
-            throw new NotImplementedException();
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Dictionary<string, string>));
+
+            try
+            {
+                using (FileStream fs = File.OpenWrite(fileName))
+                {
+                    serializer.WriteObject(fs, configuration);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new IOException("Error while saving the data", ex);
+            }
         }
 
         /// <summary>
