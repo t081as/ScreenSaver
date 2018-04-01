@@ -95,7 +95,7 @@ namespace ScreenSaver.IO
         /// <exception cref="ArgumentNullException"><c>fileName</c> is null.</exception>
         /// <exception cref="ArgumentNullException"><c>configuration</c> is null.</exception>
         /// <exception cref="IOException">Error while saving the data.</exception>
-        public void Save(string fileName, Configuration configuration)
+        public static void Save(string fileName, Configuration configuration)
         {
             if (fileName == null)
             {
@@ -129,7 +129,7 @@ namespace ScreenSaver.IO
         /// <returns>The configuration loaded from the file.</returns>
         /// <exception cref="ArgumentNullException"><c>fileName</c> is null.</exception>
         /// <exception cref="IOException">Error while loading the data.</exception>
-        public Configuration Load(string fileName)
+        public static Configuration Load(string fileName)
         {
             if (fileName == null)
             {

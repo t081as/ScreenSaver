@@ -29,6 +29,7 @@
 using System;
 using System.IO;
 using System.Windows.Forms;
+using ScreenSaver.IO;
 #endregion
 
 namespace ScreenSaver.Test
@@ -87,7 +88,10 @@ namespace ScreenSaver.Test
         /// </summary>
         public override void SaveConfiguration()
         {
-            File.WriteAllText(this.configurationFileName, this.comboBoxType.SelectedIndex.ToString());
+            Configuration configuration = new Configuration();
+            configuration.SetValue("type", this.comboBoxType.SelectedIndex.ToString());
+
+            Configuration.Save(this.configurationFileName, configuration);
         }
 
         #endregion

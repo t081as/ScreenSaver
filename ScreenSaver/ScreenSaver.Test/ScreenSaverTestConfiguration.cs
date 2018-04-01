@@ -29,6 +29,7 @@
 using System;
 using System.IO;
 using System.Windows.Forms;
+using ScreenSaver.IO;
 #endregion
 
 namespace ScreenSaver.Test
@@ -38,6 +39,36 @@ namespace ScreenSaver.Test
     /// </summary>
     internal class ScreenSaverTestConfiguration : IScreenSaverConfiguration
     {
+        #region Constructors and Destructors
+
+        /// <summary>
+        /// Contains the configuration.
+        /// </summary>
+        private Configuration configuration;
+
+        #endregion
+
+        #region Constructors and Destructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ScreenSaverTestConfiguration"/> class.
+        /// </summary>
+        public ScreenSaverTestConfiguration()
+        {
+            string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), SimpleConfigurationControl.DefaultConfigurationFileName);
+
+            try
+            {
+                this.configuration = Configuration.Load(fileName);
+            }
+            catch
+            {
+                this.configuration = new Configuration();
+            }
+        }
+
+        #endregion
+
         #region Properties
 
         /// <summary>
@@ -62,11 +93,10 @@ namespace ScreenSaver.Test
         public Control CreateScreenSaverControl()
         {
             int screenSaverType = -1;
-            string configurationFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), SimpleConfigurationControl.DefaultConfigurationFileName);
 
             try
             {
-                screenSaverType = int.Parse(File.ReadAllText(configurationFileName).Trim());
+                screenSaverType = int.Parse(this.configuration.GetValue("type", "-1"));
             }
             catch
             {
