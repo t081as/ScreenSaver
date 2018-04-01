@@ -63,10 +63,6 @@ namespace ScreenSaver.IO
 
         #endregion
 
-        #region Properties
-
-        #endregion
-
         #region Methods
 
         /// <summary>
