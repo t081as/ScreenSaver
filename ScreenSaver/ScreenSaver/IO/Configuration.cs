@@ -116,7 +116,19 @@ namespace ScreenSaver.IO
                 throw new ArgumentNullException(nameof(fileName));
             }
 
-            throw new NotImplementedException();
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Dictionary<string, string>));
+
+            try
+            {
+                using (FileStream fs = File.OpenRead(fileName))
+                {
+                    return (Configuration)serializer.ReadObject(fs);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new IOException("Error while saving the data", ex);
+            }
         }
 
         /// <summary>
