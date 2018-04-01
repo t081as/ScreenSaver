@@ -65,6 +65,26 @@ namespace ScreenSaver.IO
 
         #endregion
 
+        #region Properties
+
+        /// <summary>
+        /// Gets or sets the values.
+        /// </summary>
+        protected Dictionary<string, string> Values
+        {
+            get
+            {
+                return this.values;
+            }
+
+            set
+            {
+                this.values = value;
+            }
+        }
+
+        #endregion
+
         #region Methods
 
         /// <summary>
@@ -93,7 +113,7 @@ namespace ScreenSaver.IO
             {
                 using (FileStream fs = File.OpenWrite(fileName))
                 {
-                    serializer.WriteObject(fs, configuration);
+                    serializer.WriteObject(fs, configuration.Values);
                 }
             }
             catch (Exception ex)
@@ -122,7 +142,10 @@ namespace ScreenSaver.IO
             {
                 using (FileStream fs = File.OpenRead(fileName))
                 {
-                    return (Configuration)serializer.ReadObject(fs);
+                    Configuration configuration = new Configuration();
+                    configuration.Values = (Dictionary<string, string>)serializer.ReadObject(fs);
+
+                    return configuration;
                 }
             }
             catch (Exception ex)
