@@ -63,6 +63,7 @@
     <Compile Include="IO\Configuration.cs" />
     <Compile Include="IScreenSaverConfiguration.cs" />
     <Compile Include="Media\NativeMethods.cs" />
+    <Compile Include="Media\SlideShowItem.cs" />
     <Compile Include="Media\VideoPlayer.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="PreviewForm.cs">
