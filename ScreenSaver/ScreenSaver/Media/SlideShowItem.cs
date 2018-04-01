@@ -27,6 +27,7 @@
 
 #region Namespaces
 using System;
+using System.Drawing;
 #endregion
 
 namespace ScreenSaver.Media
@@ -36,5 +37,39 @@ namespace ScreenSaver.Media
     /// </summary>
     public class SlideShowItem
     {
+        #region Constructors and Destructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SlideShowItem"/> class.
+        /// </summary>
+        public SlideShowItem()
+        {
+            this.DisplayTime = 1000;
+            this.DisplayImage = null;
+        }
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Gets or sets time in milliseconds the image shall displayed.
+        /// </summary>
+        public int DisplayTime
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the image that shall be displayed.
+        /// </summary>
+        public Image DisplayImage
+        {
+            get;
+            set;
+        }
+
+        #endregion
     }
 }
