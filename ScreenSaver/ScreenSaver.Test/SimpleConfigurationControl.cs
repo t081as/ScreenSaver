@@ -51,6 +51,11 @@ namespace ScreenSaver.Test
         /// </summary>
         private string configurationFileName;
 
+        /// <summary>
+        /// Contains the configuration.
+        /// </summary>
+        private Configuration configuration;
+
         #endregion
 
         #region Constructors and Destructors
@@ -62,6 +67,15 @@ namespace ScreenSaver.Test
         {
             this.InitializeComponent();
             this.configurationFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), DefaultConfigurationFileName);
+
+            try
+            {
+                this.configuration = Configuration.Load(this.configurationFileName);
+            }
+            catch
+            {
+                this.configuration = new Configuration();
+            }
         }
 
         #endregion
@@ -75,7 +89,7 @@ namespace ScreenSaver.Test
         {
             try
             {
-                this.comboBoxType.SelectedIndex = int.Parse(File.ReadAllText(this.configurationFileName).Trim());
+                this.comboBoxType.SelectedIndex = int.Parse(this.configuration.GetValue("type", "-1"));
             }
             catch
             {
