@@ -28,6 +28,7 @@
 #region Namespaces
 using System;
 using System.Collections.Generic;
+using System.IO;
 #endregion
 
 namespace ScreenSaver.IO
@@ -64,6 +65,46 @@ namespace ScreenSaver.IO
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Stores the given configuration using the given file name.
+        /// </summary>
+        /// <param name="fileName">The path and name of the file that shall be used to store the configuration.</param>
+        /// <param name="configuration">The configuration that shall be stored.</param>
+        /// <exception cref="ArgumentNullException"><c>fileName</c> is null.</exception>
+        /// <exception cref="ArgumentNullException"><c>configuration</c> is null.</exception>
+        /// <exception cref="IOException">Error while saving the data.</exception>
+        public void Save(string fileName, Configuration configuration)
+        {
+            if (fileName == null)
+            {
+                throw new ArgumentNullException(nameof(fileName));
+            }
+
+            if (configuration == null)
+            {
+                throw new ArgumentNullException(nameof(configuration));
+            }
+
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Loads the configuration from the given file.
+        /// </summary>
+        /// <param name="fileName">The path and name of the file that shall be used to load the configuration.</param>
+        /// <returns>The configuration loaded from the file.</returns>
+        /// <exception cref="ArgumentNullException"><c>fileName</c> is null.</exception>
+        /// <exception cref="IOException">Error while loading the data.</exception>
+        public Configuration Load(string fileName)
+        {
+            if (fileName == null)
+            {
+                throw new ArgumentNullException(nameof(fileName));
+            }
+
+            throw new NotImplementedException();
+        }
 
         /// <summary>
         /// Sets the given key to the given value.
