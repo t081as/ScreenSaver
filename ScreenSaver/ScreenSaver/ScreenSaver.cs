@@ -31,6 +31,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 #endregion
 
@@ -187,6 +188,7 @@ namespace ScreenSaver
                 form.Show();
             }
 
+            this.StartMouseMoveDetection();
             Application.Run();
         }
 
@@ -288,6 +290,45 @@ namespace ScreenSaver
 
             previewWindow.Location = new Point(0, 0);
             previewWindow.Bounds = rect;
+        }
+
+        /// <summary>
+        /// Starts the mouse move detection thread.
+        /// </summary>
+        /// <remarks>
+        /// see https://gitlab.com/tobiaskoch/ScreenSaver/issues/11
+        /// </remarks>
+        protected virtual void StartMouseMoveDetection()
+        {
+            Thread backgroundDetection = new Thread(new ThreadStart(this.MouseMoveDetectionThread));
+            backgroundDetection.Name = "Mouse Detection";
+            backgroundDetection.IsBackground = true;
+
+            backgroundDetection.Start();
+        }
+
+        /// <summary>
+        /// This method will be executed in a background thread to quit the screen saver
+        /// when a mouse movement will be detected.
+        /// </summary>
+        /// <remarks>
+        /// see https://gitlab.com/tobiaskoch/ScreenSaver/issues/11
+        /// </remarks>
+        private void MouseMoveDetectionThread()
+        {
+            Point currentPosition = Cursor.Position;
+
+            while (true)
+            {
+                Point newPosition = Cursor.Position;
+
+                if (Math.Abs(currentPosition.X - newPosition.X) > 40 || Math.Abs(currentPosition.Y - newPosition.Y) > 40)
+                {
+                    Environment.Exit(0);
+                }
+
+                Thread.Sleep(250);
+            }
         }
 
         #endregion
