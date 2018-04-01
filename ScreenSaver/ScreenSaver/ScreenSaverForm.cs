@@ -105,7 +105,7 @@ namespace ScreenSaver
                 this.originalLocation = e.Location;
             }
 
-            if (Math.Abs(e.X - this.originalLocation.X) > 40 || Math.Abs(e.Y - this.originalLocation.Y) > 40)
+            if (Math.Abs(e.X - this.originalLocation.X) > ScreenSaver.MouseMovementThreshold || Math.Abs(e.Y - this.originalLocation.Y) > ScreenSaver.MouseMovementThreshold)
             {
                 Application.Exit();
             }

@@ -45,6 +45,11 @@ namespace ScreenSaver
         #region Constants and Fields
 
         /// <summary>
+        /// The threshold used for the detection of a mouse movement.
+        /// </summary>
+        public const int MouseMovementThreshold = 40;
+
+        /// <summary>
         /// The configuration of the screen saver.
         /// </summary>
         private IScreenSaverConfiguration screenSaverConfiguration;
@@ -322,7 +327,7 @@ namespace ScreenSaver
             {
                 Point newPosition = Cursor.Position;
 
-                if (Math.Abs(currentPosition.X - newPosition.X) > 40 || Math.Abs(currentPosition.Y - newPosition.Y) > 40)
+                if (Math.Abs(currentPosition.X - newPosition.X) > ScreenSaver.MouseMovementThreshold || Math.Abs(currentPosition.Y - newPosition.Y) > ScreenSaver.MouseMovementThreshold)
                 {
                     Environment.Exit(0);
                 }
