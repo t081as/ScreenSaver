@@ -1,3 +1,7 @@
+## X.X (XXXX-XX-XX)
+
+- Configuration class added
+
 ## 0.4 (2018-03-17)
 
 - Video player added
