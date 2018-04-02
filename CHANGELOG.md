@@ -1,6 +1,8 @@
 ## X.X (XXXX-XX-XX)
 
 - Configuration class added
+- Mouse movement detection improved
+- Simple slide show helper added
 
 ## 0.4 (2018-03-17)
 
