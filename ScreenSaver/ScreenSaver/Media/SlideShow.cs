@@ -76,7 +76,7 @@ namespace ScreenSaver.Media
         /// <summary>
         /// Triggered when a new image of the slideshow has been rendered.
         /// </summary>
-        public event EventHandler ImageRendered;
+        public event EventHandler<ImageEventArgs> ImageRendered;
 
         #endregion
 
@@ -127,6 +127,10 @@ namespace ScreenSaver.Media
                     try
                     {
                         // TODO: Implement me
+                        if (this.ImageRendered != null)
+                        {
+                            this.ImageRendered.Invoke(this, null);
+                        }
                     }
                     catch (ThreadAbortException)
                     {
