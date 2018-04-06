@@ -27,6 +27,7 @@
 
 #region Namespaces
 using System;
+using System.Drawing;
 #endregion
 
 namespace ScreenSaver.Media
@@ -36,5 +37,38 @@ namespace ScreenSaver.Media
     /// </summary>
     public class ImageEventArgs : EventArgs
     {
+        #region Constructors and Destructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ImageEventArgs"/> class.
+        /// </summary>
+        public ImageEventArgs()
+        {
+            this.Image = null;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ImageEventArgs"/> class.
+        /// </summary>
+        /// <param name="image">The image that has been rendered.</param>
+        public ImageEventArgs(Image image)
+        {
+            this.Image = image;
+        }
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Gets or sets the image that has been rendered.
+        /// </summary>
+        public Image Image
+        {
+            get;
+            set;
+        }
+
+        #endregion
     }
 }
