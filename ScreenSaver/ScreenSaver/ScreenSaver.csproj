@@ -62,6 +62,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IO\Configuration.cs" />
     <Compile Include="IScreenSaverConfiguration.cs" />
+    <Compile Include="Media\ImageEventArgs.cs" />
     <Compile Include="Media\ISlideShowConfiguration.cs" />
     <Compile Include="Media\NativeMethods.cs" />
     <Compile Include="Media\SlideShow.cs" />

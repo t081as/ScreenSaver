@@ -126,7 +126,7 @@ namespace ScreenSaver.Media
                 {
                     try
                     {
-
+                        // TODO: Implement me
                     }
                     catch (ThreadAbortException)
                     {
