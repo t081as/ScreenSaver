@@ -27,6 +27,7 @@
 
 #region Namespaces
 using System;
+using System.Drawing;
 using System.Threading;
 #endregion
 
@@ -78,6 +79,11 @@ namespace ScreenSaver.Media
         /// </summary>
         public event EventHandler<ImageEventArgs> ImageRendered;
 
+        /// <summary>
+        /// Triggered when the rendering fails.
+        /// </summary>
+        public event EventHandler<RenderingErrorEventArgs> Error;
+
         #endregion
 
         #region Methods
@@ -120,25 +126,31 @@ namespace ScreenSaver.Media
         /// </summary>
         protected virtual void SlideRendering()
         {
+            Image renderedImage = null;
+
             try
             {
                 while (true)
                 {
                     try
                     {
-                        // TODO: Implement me
+                        SlideShowItem nextItem = this.configuration.Next();
+
                         if (this.ImageRendered != null)
                         {
-                            this.ImageRendered.Invoke(this, null);
+                            this.ImageRendered.Invoke(this, new ImageEventArgs(renderedImage));
                         }
                     }
                     catch (ThreadAbortException)
                     {
                         throw;
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        // Ignore exceptions
+                        if (this.Error != null)
+                        {
+                            this.Error.Invoke(this, new RenderingErrorEventArgs(ex));
+                        }
                     }
                 }
             }
