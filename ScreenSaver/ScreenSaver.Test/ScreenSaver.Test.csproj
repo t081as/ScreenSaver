@@ -70,6 +70,7 @@
     <Compile Include="SlideShowControl.Designer.cs">
       <DependentUpon>SlideShowControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="SlideShowTestConfiguration.cs" />
     <Compile Include="VideoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

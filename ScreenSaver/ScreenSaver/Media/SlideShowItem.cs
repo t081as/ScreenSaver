@@ -48,6 +48,17 @@ namespace ScreenSaver.Media
             this.DisplayImage = null;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SlideShowItem"/> class.
+        /// </summary>
+        /// <param name="displayImage">The image that shall be displayed.</param>
+        /// <param name="displayTime">The time in milliseconds the image shall displayed.</param>
+        public SlideShowItem(Image displayImage, int displayTime)
+        {
+            this.DisplayTime = displayTime;
+            this.DisplayImage = displayImage;
+        }
+
         #endregion
 
         #region Properties
