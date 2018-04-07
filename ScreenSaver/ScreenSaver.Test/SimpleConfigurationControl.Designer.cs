@@ -64,7 +64,8 @@ namespace ScreenSaver.Test
             this.comboBoxType.FormattingEnabled = true;
             this.comboBoxType.Items.AddRange(new object[] {
             "Colors",
-            "Video"});
+            "Video",
+            "Slide show"});
             this.comboBoxType.Location = new System.Drawing.Point(3, 3);
             this.comboBoxType.Name = "comboBoxType";
             this.comboBoxType.Size = new System.Drawing.Size(394, 21);

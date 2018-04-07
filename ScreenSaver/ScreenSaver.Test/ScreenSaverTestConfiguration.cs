@@ -108,6 +108,9 @@ namespace ScreenSaver.Test
                 case 1:
                     return new VideoControl();
 
+                case 2:
+                    return new SlideShowControl();
+
                 default:
                     return new ColorControl();
             }

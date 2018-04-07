@@ -60,6 +60,8 @@ namespace ScreenSaver.Test
             this.slideShow = new SlideShow(new SlideShowTestConfiguration());
             this.slideShow.ImageRendered += this.SlideShow_ImageRendered;
             this.slideShow.Error += this.SlideShow_Error;
+
+            this.slideShow.Start();
         }
 
         #endregion
@@ -83,7 +85,7 @@ namespace ScreenSaver.Test
         /// <param name="e">An <see cref="ImageEventArgs"/> containing the rendered image.</param>
         private void SlideShow_ImageRendered(object sender, ImageEventArgs e)
         {
-            this.BackgroundImage = e.Image;
+             this.BackgroundImage = e.Image;
         }
 
         #endregion
