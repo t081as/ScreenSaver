@@ -26,6 +26,7 @@
 #endregion
 
 #region Namespaces
+using System;
 using System.Windows.Forms;
 using ScreenSaver.Media;
 #endregion
@@ -37,6 +38,15 @@ namespace ScreenSaver.Test
     /// </summary>
     public partial class SlideShowControl : UserControl
     {
+        #region Constants and Fields
+
+        /// <summary>
+        /// The slide show provider.
+        /// </summary>
+        private SlideShow slideShow;
+
+        #endregion
+
         #region Constructors and Destructors
 
         /// <summary>
@@ -45,6 +55,35 @@ namespace ScreenSaver.Test
         public SlideShowControl()
         {
             this.InitializeComponent();
+            this.BackgroundImageLayout = ImageLayout.Stretch;
+
+            this.slideShow = new SlideShow(new SlideShowTestConfiguration());
+            this.slideShow.ImageRendered += this.SlideShow_ImageRendered;
+            this.slideShow.Error += this.SlideShow_Error;
+        }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// A rendering error occured.
+        /// </summary>
+        /// <param name="sender">The event sender.</param>
+        /// <param name="e">A <see cref="RenderingErrorEventArgs"/> containing error information.</param>
+        private void SlideShow_Error(object sender, RenderingErrorEventArgs e)
+        {
+            Console.WriteLine(e.Exception.Message);
+        }
+
+        /// <summary>
+        /// A slide show image has been rendered.
+        /// </summary>
+        /// <param name="sender">The event sender.</param>
+        /// <param name="e">An <see cref="ImageEventArgs"/> containing the rendered image.</param>
+        private void SlideShow_ImageRendered(object sender, ImageEventArgs e)
+        {
+            this.BackgroundImage = e.Image;
         }
 
         #endregion
