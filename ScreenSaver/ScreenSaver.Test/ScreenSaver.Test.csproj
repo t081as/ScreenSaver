@@ -64,6 +64,12 @@
     <Compile Include="SimpleConfigurationControl.Designer.cs">
       <DependentUpon>SimpleConfigurationControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="SlideShowControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SlideShowControl.Designer.cs">
+      <DependentUpon>SlideShowControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="VideoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
