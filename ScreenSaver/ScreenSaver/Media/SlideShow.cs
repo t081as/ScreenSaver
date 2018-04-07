@@ -28,6 +28,7 @@
 #region Namespaces
 using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Threading;
 #endregion
 
@@ -134,12 +135,69 @@ namespace ScreenSaver.Media
                 {
                     try
                     {
+                        // Retrieve next slide show item
                         SlideShowItem nextItem = this.configuration.Next();
+                        int realDisplayTime = nextItem.DisplayTime;
+                        int changeTime = 500;
 
-                        if (this.ImageRendered != null)
+                        // Check next slide show item
+                        if (nextItem.DisplayImage == null)
                         {
-                            this.ImageRendered.Invoke(this, new ImageEventArgs(renderedImage));
+                            throw new InvalidOperationException("ISlideShowConfiguration.Next: SlideShowItem.DisplayImage is null");
                         }
+
+                        if (realDisplayTime < 1000)
+                        {
+                            realDisplayTime = 1000 - changeTime;
+                        }
+                        else
+                        {
+                            realDisplayTime = nextItem.DisplayTime - changeTime;
+                        }
+
+                        if (renderedImage == null)
+                        {
+                            // First loop: initialize rendered image from first slide show element
+                            renderedImage = new Bitmap(nextItem.DisplayImage);
+
+                            if (this.ImageRendered != null)
+                            {
+                                this.ImageRendered.Invoke(this, new ImageEventArgs(renderedImage));
+                            }
+                        }
+                        else
+                        {
+                            for (int i = 0; i < 10; i++)
+                            {
+                                using (Graphics graphics = Graphics.FromImage(renderedImage))
+                                {
+                                    ColorMatrix matrix = new ColorMatrix();
+                                    matrix.Matrix33 = 1 / (10 - i); // Opacity
+
+                                    ImageAttributes imageAttributes = new ImageAttributes();
+                                    imageAttributes.SetColorMatrix(matrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+
+                                    graphics.DrawImage(
+                                        nextItem.DisplayImage,
+                                        new Rectangle(0, 0, renderedImage.Width, renderedImage.Height),
+                                        0,
+                                        0,
+                                        renderedImage.Width,
+                                        renderedImage.Height,
+                                        GraphicsUnit.Pixel,
+                                        imageAttributes);
+                                }
+
+                                Thread.Sleep((int)(changeTime / 10));
+
+                                if (this.ImageRendered != null)
+                                {
+                                    this.ImageRendered.Invoke(this, new ImageEventArgs(renderedImage));
+                                }
+                            }
+                        }
+
+                        Thread.Sleep(realDisplayTime);
                     }
                     catch (ThreadAbortException)
                     {
