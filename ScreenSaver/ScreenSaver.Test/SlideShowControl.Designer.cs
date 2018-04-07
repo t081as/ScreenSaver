@@ -28,8 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // SlideShowControl
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Name = "SlideShowControl";
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.SlideShowControl_Paint);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

@@ -29,6 +29,7 @@
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Media;
 using System.Threading;
 #endregion
 
@@ -155,46 +156,55 @@ namespace ScreenSaver.Media
                             realDisplayTime = nextItem.DisplayTime - changeTime;
                         }
 
+                        // Initialize image
                         if (renderedImage == null)
                         {
-                            // First loop: initialize rendered image from first slide show element
-                            renderedImage = new Bitmap(nextItem.DisplayImage);
+                            renderedImage = new Bitmap(nextItem.DisplayImage.Width, nextItem.DisplayImage.Height);
+
+                            using (Graphics graphics = Graphics.FromImage(renderedImage))
+                            {
+                                graphics.FillRectangle(new SolidBrush(Color.Black), 0, 0, renderedImage.Width, renderedImage.Height);
+                            }
+                        }
+
+                        // Fade in
+                        for (int i = 0; i < 10; i++)
+                        {
+                            Image temp = new Bitmap(renderedImage);
+
+                            using (Graphics graphics = Graphics.FromImage(temp))
+                            {
+                                ColorMatrix matrix = new ColorMatrix();
+                                matrix.Matrix33 = 1f / (float)(10 - i); // Opacity
+
+                                ImageAttributes imageAttributes = new ImageAttributes();
+                                imageAttributes.SetColorMatrix(matrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+
+                                graphics.DrawImage(
+                                    nextItem.DisplayImage,
+                                    new Rectangle(0, 0, temp.Width, temp.Height),
+                                    0,
+                                    0,
+                                    temp.Width,
+                                    temp.Height,
+                                    GraphicsUnit.Pixel,
+                                    imageAttributes);
+                            }
+
+                            Thread.Sleep((int)(changeTime / 10));
 
                             if (this.ImageRendered != null)
                             {
-                                this.ImageRendered.Invoke(this, new ImageEventArgs(renderedImage));
+                                this.ImageRendered.Invoke(this, new ImageEventArgs(new Bitmap(temp)));
                             }
                         }
-                        else
+
+                        // Full image
+                        renderedImage = new Bitmap(nextItem.DisplayImage);
+
+                        if (this.ImageRendered != null)
                         {
-                            for (int i = 0; i < 10; i++)
-                            {
-                                using (Graphics graphics = Graphics.FromImage(renderedImage))
-                                {
-                                    ColorMatrix matrix = new ColorMatrix();
-                                    matrix.Matrix33 = 1 / (10 - i); // Opacity
-
-                                    ImageAttributes imageAttributes = new ImageAttributes();
-                                    imageAttributes.SetColorMatrix(matrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-
-                                    graphics.DrawImage(
-                                        nextItem.DisplayImage,
-                                        new Rectangle(0, 0, renderedImage.Width, renderedImage.Height),
-                                        0,
-                                        0,
-                                        renderedImage.Width,
-                                        renderedImage.Height,
-                                        GraphicsUnit.Pixel,
-                                        imageAttributes);
-                                }
-
-                                Thread.Sleep((int)(changeTime / 10));
-
-                                if (this.ImageRendered != null)
-                                {
-                                    this.ImageRendered.Invoke(this, new ImageEventArgs(renderedImage));
-                                }
-                            }
+                            this.ImageRendered.Invoke(this, new ImageEventArgs(new Bitmap(renderedImage)));
                         }
 
                         Thread.Sleep(realDisplayTime);

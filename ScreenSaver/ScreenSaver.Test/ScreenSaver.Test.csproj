@@ -93,6 +93,9 @@
     <EmbeddedResource Include="SimpleConfigurationControl.resx">
       <DependentUpon>SimpleConfigurationControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SlideShowControl.resx">
+      <DependentUpon>SlideShowControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VideoControl.resx">
       <DependentUpon>VideoControl.cs</DependentUpon>
     </EmbeddedResource>

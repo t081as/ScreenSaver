@@ -27,6 +27,8 @@
 
 #region Namespaces
 using System;
+using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using ScreenSaver.Media;
 #endregion
@@ -45,6 +47,16 @@ namespace ScreenSaver.Test
         /// </summary>
         private SlideShow slideShow;
 
+        /// <summary>
+        /// The image that shall be displayed.
+        /// </summary>
+        private Image currentImage;
+
+        /// <summary>
+        /// The lock object for <see cref="currentImage"/>.
+        /// </summary>
+        private object currentImageLock = new object();
+
         #endregion
 
         #region Constructors and Destructors
@@ -55,7 +67,6 @@ namespace ScreenSaver.Test
         public SlideShowControl()
         {
             this.InitializeComponent();
-            this.BackgroundImageLayout = ImageLayout.Stretch;
 
             this.slideShow = new SlideShow(new SlideShowTestConfiguration());
             this.slideShow.ImageRendered += this.SlideShow_ImageRendered;
@@ -75,7 +86,8 @@ namespace ScreenSaver.Test
         /// <param name="e">A <see cref="RenderingErrorEventArgs"/> containing error information.</param>
         private void SlideShow_Error(object sender, RenderingErrorEventArgs e)
         {
-            Console.WriteLine(e.Exception.Message);
+            File.AppendAllText("error.txt", e.Exception.Message + Environment.NewLine + e.Exception.StackTrace);
+            Environment.Exit(1);
         }
 
         /// <summary>
@@ -85,7 +97,28 @@ namespace ScreenSaver.Test
         /// <param name="e">An <see cref="ImageEventArgs"/> containing the rendered image.</param>
         private void SlideShow_ImageRendered(object sender, ImageEventArgs e)
         {
-             this.BackgroundImage = e.Image;
+            lock (this.currentImageLock)
+            {
+                this.currentImage = e.Image;
+            }
+
+            this.Invalidate();
+        }
+
+        /// <summary>
+        /// Handles the paint event.
+        /// </summary>
+        /// <param name="sender">The event sender.</param>
+        /// <param name="e">A <see cref="PaintEventArgs"/> containing the reference to the <see cref="Graphics"/> object of the window.</param>
+        private void SlideShowControl_Paint(object sender, PaintEventArgs e)
+        {
+            lock (this.currentImageLock)
+            {
+                if (this.currentImage != null)
+                {
+                    e.Graphics.DrawImage(this.currentImage, 0, 0, this.Width, this.Height);
+                }
+            }
         }
 
         #endregion
