@@ -59,6 +59,7 @@
     <Compile Include="ConfigurationForm.Designer.cs">
       <DependentUpon>ConfigurationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\ControlExtensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IO\Configuration.cs" />
     <Compile Include="IScreenSaverConfiguration.cs" />
