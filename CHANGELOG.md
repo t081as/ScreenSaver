@@ -1,4 +1,4 @@
-## X.X (XXXX-XX-XX)
+## 0.5 (2018-04-08)
 
 - Configuration class added
 - Mouse movement detection improved
