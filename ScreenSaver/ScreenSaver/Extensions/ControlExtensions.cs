@@ -27,6 +27,7 @@
 
 #region Namespaces
 using System;
+using System.Reflection;
 using System.Windows.Forms;
 #endregion
 
@@ -38,6 +39,15 @@ namespace ScreenSaver.Extensions
     public static class ControlExtensions
     {
         #region Methods
+
+        /// <summary>
+        /// Enables double buffering of a <see cref="Control"/>.
+        /// </summary>
+        /// <param name="control">A <see cref="Control"/>.</param>
+        public static void EnableDoubleBuffering(this Control control)
+        {
+            typeof(Control).GetProperty("DoubleBuffered", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(control, true, null);
+        }
 
         #endregion
     }

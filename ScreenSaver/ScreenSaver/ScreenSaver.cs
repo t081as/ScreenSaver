@@ -33,6 +33,7 @@ using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
+using ScreenSaver.Extensions;
 #endregion
 
 namespace ScreenSaver
@@ -183,6 +184,7 @@ namespace ScreenSaver
             foreach (Screen screen in Screen.AllScreens)
             {
                 Control screenSaverControl = this.screenSaverConfiguration.CreateScreenSaverControl();
+                screenSaverControl.EnableDoubleBuffering();
 
                 if (screenSaverControl == null)
                 {
@@ -204,6 +206,7 @@ namespace ScreenSaver
         protected virtual void Preview(IntPtr parentWindowHandle)
         {
             Control previewControl = this.screenSaverConfiguration.CreatePreviewControl();
+            previewControl.EnableDoubleBuffering();
 
             if (previewControl == null)
             {
