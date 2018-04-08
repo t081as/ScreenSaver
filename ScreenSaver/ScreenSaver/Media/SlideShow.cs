@@ -128,6 +128,9 @@ namespace ScreenSaver.Media
         /// </summary>
         protected virtual void SlideRendering()
         {
+            const int slideChangeTime = 5000; // The time in milliseconds used for the fade in of the new image
+            const int slideChangeSteps = 50; // The number of fade in steps performed
+
             Image renderedImage = null;
 
             try
@@ -139,7 +142,6 @@ namespace ScreenSaver.Media
                         // Retrieve next slide show item
                         SlideShowItem nextItem = this.configuration.Next();
                         int realDisplayTime = nextItem.DisplayTime;
-                        int changeTime = 500;
 
                         // Check next slide show item
                         if (nextItem.DisplayImage == null)
@@ -149,11 +151,7 @@ namespace ScreenSaver.Media
 
                         if (realDisplayTime < 1000)
                         {
-                            realDisplayTime = 1000 - changeTime;
-                        }
-                        else
-                        {
-                            realDisplayTime = nextItem.DisplayTime - changeTime;
+                            realDisplayTime = 1000;
                         }
 
                         // Initialize image
@@ -168,14 +166,14 @@ namespace ScreenSaver.Media
                         }
 
                         // Fade in
-                        for (int i = 0; i < 10; i++)
+                        for (int i = 0; i < slideChangeSteps; i++)
                         {
                             Image temp = new Bitmap(renderedImage);
 
                             using (Graphics graphics = Graphics.FromImage(temp))
                             {
                                 ColorMatrix matrix = new ColorMatrix();
-                                matrix.Matrix33 = 1f / (float)(10 - i); // Opacity
+                                matrix.Matrix33 = 1f / (float)(slideChangeSteps - i); // Opacity
 
                                 ImageAttributes imageAttributes = new ImageAttributes();
                                 imageAttributes.SetColorMatrix(matrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
@@ -191,7 +189,7 @@ namespace ScreenSaver.Media
                                     imageAttributes);
                             }
 
-                            Thread.Sleep((int)(changeTime / 10));
+                            Thread.Sleep((int)(slideChangeTime / slideChangeSteps));
 
                             if (this.ImageRendered != null)
                             {
