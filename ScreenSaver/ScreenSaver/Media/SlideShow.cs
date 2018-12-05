@@ -29,7 +29,6 @@
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Media;
 using System.Threading;
 #endregion
 
@@ -38,7 +37,7 @@ namespace ScreenSaver.Media
     /// <summary>
     /// Encapsulates the functionality of a simple image slideshow.
     /// </summary>
-    public class SlideShow
+    public class SlideShow : ISlideShow
     {
         #region Constants and Fields
 
@@ -46,6 +45,11 @@ namespace ScreenSaver.Media
         /// An implementation of the <see cref="ISlideShowConfiguration"/> interface.
         /// </summary>
         private ISlideShowConfiguration configuration;
+
+        /// <summary>
+        /// The desired <see cref="Size"/> of the rendered images.
+        /// </summary>
+        private Size renderedImageSize;
 
         /// <summary>
         /// Reference to the thread rendering the slideshow.
@@ -60,14 +64,16 @@ namespace ScreenSaver.Media
         /// Initializes a new instance of the <see cref="SlideShow"/> class.
         /// </summary>
         /// <param name="configuration">An implementation of the <see cref="ISlideShowConfiguration"/> interface.</param>
+        /// <param name="renderedImageSize">The desired <see cref="Size"/> of the rendered images.</param>
         /// <exception cref="ArgumentNullException"><c>configuration</c> is null.</exception>
-        public SlideShow(ISlideShowConfiguration configuration)
+        public SlideShow(ISlideShowConfiguration configuration, Size renderedImageSize)
         {
             if (configuration == null)
             {
                 throw new ArgumentNullException(nameof(configuration));
             }
 
+            this.renderedImageSize = renderedImageSize;
             this.configuration = configuration;
             this.slidesRenderingThread = null;
         }
@@ -128,10 +134,15 @@ namespace ScreenSaver.Media
         /// </summary>
         protected virtual void SlideRendering()
         {
-            const int slideChangeTime = 5000; // The time in milliseconds used for the fade in of the new image
+            const int slideChangeTime = 1000; // The time in milliseconds used for the fade in of the new image
             const int slideChangeSteps = 50; // The number of fade in steps performed
 
-            Image renderedImage = null;
+            Bitmap renderingImage = new Bitmap(this.renderedImageSize.Width, this.renderedImageSize.Height);
+
+            using (Graphics graphics = Graphics.FromImage(renderingImage))
+            {
+                graphics.FillRectangle(new SolidBrush(Color.Black), 0, 0, renderingImage.Width, renderingImage.Height);
+            }
 
             try
             {
@@ -154,23 +165,9 @@ namespace ScreenSaver.Media
                             realDisplayTime = 1000;
                         }
 
-                        // Initialize image
-                        if (renderedImage == null)
-                        {
-                            renderedImage = new Bitmap(nextItem.DisplayImage.Width, nextItem.DisplayImage.Height);
-
-                            using (Graphics graphics = Graphics.FromImage(renderedImage))
-                            {
-                                graphics.FillRectangle(new SolidBrush(Color.Black), 0, 0, renderedImage.Width, renderedImage.Height);
-                            }
-                        }
-
-                        // Fade in
                         for (int i = 0; i < slideChangeSteps; i++)
                         {
-                            Image temp = new Bitmap(renderedImage);
-
-                            using (Graphics graphics = Graphics.FromImage(temp))
+                            using (Graphics graphics = Graphics.FromImage(renderingImage))
                             {
                                 ColorMatrix matrix = new ColorMatrix();
                                 matrix.Matrix33 = 1f / (float)(slideChangeSteps - i); // Opacity
@@ -180,31 +177,20 @@ namespace ScreenSaver.Media
 
                                 graphics.DrawImage(
                                     nextItem.DisplayImage,
-                                    new Rectangle(0, 0, temp.Width, temp.Height),
+                                    new Rectangle(0, 0, renderingImage.Width, renderingImage.Height),
                                     0,
                                     0,
-                                    temp.Width,
-                                    temp.Height,
+                                    nextItem.DisplayImage.Width,
+                                    nextItem.DisplayImage.Height,
                                     GraphicsUnit.Pixel,
                                     imageAttributes);
                             }
 
                             Thread.Sleep((int)(slideChangeTime / slideChangeSteps));
-
-                            if (this.ImageRendered != null)
-                            {
-                                this.ImageRendered.Invoke(this, new ImageEventArgs(new Bitmap(temp)));
-                            }
+                            this.ImageRendered?.Invoke(this, new ImageEventArgs(renderingImage));
                         }
 
-                        // Full image
-                        renderedImage = new Bitmap(nextItem.DisplayImage);
-
-                        if (this.ImageRendered != null)
-                        {
-                            this.ImageRendered.Invoke(this, new ImageEventArgs(new Bitmap(renderedImage)));
-                        }
-
+                        GC.Collect();
                         Thread.Sleep(realDisplayTime);
                     }
                     catch (ThreadAbortException)
@@ -213,10 +199,7 @@ namespace ScreenSaver.Media
                     }
                     catch (Exception ex)
                     {
-                        if (this.Error != null)
-                        {
-                            this.Error.Invoke(this, new RenderingErrorEventArgs(ex));
-                        }
+                        this.Error?.Invoke(this, new RenderingErrorEventArgs(ex));
                     }
                 }
             }

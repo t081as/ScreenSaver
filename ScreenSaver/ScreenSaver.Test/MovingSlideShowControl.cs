@@ -36,16 +36,16 @@ using ScreenSaver.Media;
 namespace ScreenSaver.Test
 {
     /// <summary>
-    /// A screen saver control testing the <see cref="SlideShow"/> class.
+    /// A screen saver control testing the <see cref="MovingSlideShow"/> class.
     /// </summary>
-    public partial class SlideShowControl : UserControl
+    public partial class MovingSlideShowControl : UserControl
     {
         #region Constants and Fields
 
         /// <summary>
         /// The slide show provider.
         /// </summary>
-        private SlideShow slideShow;
+        private MovingSlideShow slideShow;
 
         /// <summary>
         /// The image that shall be displayed.
@@ -62,15 +62,15 @@ namespace ScreenSaver.Test
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SlideShowControl"/> class.
+        /// Initializes a new instance of the <see cref="MovingSlideShowControl"/> class.
         /// </summary>
         /// <param name="screen">The screen this screen saver control will be displayed on.</param>
-        public SlideShowControl(Screen screen)
+        public MovingSlideShowControl(Screen screen)
         {
             this.InitializeComponent();
 
             this.currentImage = new Bitmap(screen.Bounds.Width, screen.Bounds.Height);
-            this.slideShow = new SlideShow(new SlideShowTestConfiguration(), new Size(screen.Bounds.Width, screen.Bounds.Height));
+            this.slideShow = new MovingSlideShow(new MovingSlideShowTestConfiguration(), new Size(screen.Bounds.Width, screen.Bounds.Height));
             this.slideShow.ImageRendered += this.SlideShow_ImageRendered;
             this.slideShow.Error += this.SlideShow_Error;
 
@@ -116,7 +116,7 @@ namespace ScreenSaver.Test
         /// </summary>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">A <see cref="PaintEventArgs"/> containing the reference to the <see cref="Graphics"/> object of the window.</param>
-        private void SlideShowControl_Paint(object sender, PaintEventArgs e)
+        private void MovingSlideShowControl_Paint(object sender, PaintEventArgs e)
         {
             lock (this.currentImageLock)
             {

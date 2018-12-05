@@ -27,17 +27,17 @@
 
 namespace ScreenSaver.Test
 {
-    partial class SlideShowControl
+    partial class MovingSlideShowControl
     {
         /// <summary> 
-        /// Erforderliche Designervariable.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary> 
-        /// Verwendete Ressourcen bereinigen.
+        /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -47,23 +47,23 @@ namespace ScreenSaver.Test
             base.Dispose(disposing);
         }
 
-        #region Vom Komponenten-Designer generierter Code
+        #region Component Designer generated code
 
         /// <summary> 
-        /// Erforderliche Methode für die Designerunterstützung. 
-        /// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
             this.SuspendLayout();
             // 
-            // SlideShowControl
+            // MovingSlideShowControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.Name = "SlideShowControl";
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.SlideShowControl_Paint);
+            this.Name = "MovingSlideShowControl";
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.MovingSlideShowControl_Paint);
             this.ResumeLayout(false);
 
         }

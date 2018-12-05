@@ -183,7 +183,7 @@ namespace ScreenSaver
         {
             foreach (Screen screen in Screen.AllScreens)
             {
-                Control screenSaverControl = this.screenSaverConfiguration.CreateScreenSaverControl();
+                Control screenSaverControl = this.screenSaverConfiguration.CreateScreenSaverControl(screen);
                 screenSaverControl.EnableDoubleBuffering();
 
                 if (screenSaverControl == null)
@@ -210,7 +210,7 @@ namespace ScreenSaver
 
             if (previewControl == null)
             {
-                previewControl = this.screenSaverConfiguration.CreateScreenSaverControl();
+                previewControl = this.screenSaverConfiguration.CreateScreenSaverControl(null);
             }
 
             if (previewControl != null)

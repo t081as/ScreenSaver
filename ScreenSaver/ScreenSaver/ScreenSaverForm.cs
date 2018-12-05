@@ -57,6 +57,8 @@ namespace ScreenSaver
         public ScreenSaverForm(Control screenSaverControl, Screen screen)
         {
             this.InitializeComponent();
+            this.DoubleBuffered = true;
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
             this.Bounds = screen.Bounds;
             this.Controls.Add(screenSaverControl);

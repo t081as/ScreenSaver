@@ -1,3 +1,8 @@
+## X.X (YYYY-YY-YY)
+
+- Moving slide show added
+- Performance improved
+
 ## 0.5 (2018-04-08)
 
 - Configuration class added

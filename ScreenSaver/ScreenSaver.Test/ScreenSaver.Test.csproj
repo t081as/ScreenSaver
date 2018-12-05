@@ -55,6 +55,13 @@
       <DependentUpon>ColorControl.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="MovingSlideShowControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MovingSlideShowControl.Designer.cs">
+      <DependentUpon>MovingSlideShowControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MovingSlideShowTestConfiguration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScreenSaverTestConfiguration.cs" />
@@ -79,6 +86,9 @@
     </Compile>
     <EmbeddedResource Include="ColorControl.resx">
       <DependentUpon>ColorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MovingSlideShowControl.resx">
+      <DependentUpon>MovingSlideShowControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SimpleConfigurationControl.resx">
       <DependentUpon>SimpleConfigurationControl.cs</DependentUpon>

@@ -48,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigurationControl.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ConfigurationControl.Designer.cs">
       <DependentUpon>ConfigurationControl.cs</DependentUpon>
@@ -64,7 +64,9 @@
     <Compile Include="IO\Configuration.cs" />
     <Compile Include="IScreenSaverConfiguration.cs" />
     <Compile Include="Media\ImageEventArgs.cs" />
+    <Compile Include="Media\ISlideShow.cs" />
     <Compile Include="Media\ISlideShowConfiguration.cs" />
+    <Compile Include="Media\MovingSlideShow.cs" />
     <Compile Include="Media\NativeMethods.cs" />
     <Compile Include="Media\RenderingErrorEventArgs.cs" />
     <Compile Include="Media\SlideShow.cs" />

@@ -89,9 +89,15 @@ namespace ScreenSaver.Test
         /// <summary>
         /// Creates and returns a new instance of a <see cref="Control"/> used as a screen saver for the given screen.
         /// </summary>
+        /// <param name="screen">The <see cref="Screen"/> this screen saver control shall be used for or <c>null</c> if the control is used as a preview.</param>
         /// <returns>A <see cref="Control"/> used as a screen saver for the given screen.</returns>
-        public Control CreateScreenSaverControl()
+        public Control CreateScreenSaverControl(Screen screen)
         {
+            if (screen == null)
+            {
+                throw new ArgumentNullException(nameof(screen));
+            }
+
             int screenSaverType = -1;
 
             try
@@ -109,7 +115,10 @@ namespace ScreenSaver.Test
                     return new VideoControl();
 
                 case 2:
-                    return new SlideShowControl();
+                    return new SlideShowControl(screen);
+
+                case 3:
+                    return new MovingSlideShowControl(screen);
 
                 default:
                     return new ColorControl();
@@ -120,12 +129,11 @@ namespace ScreenSaver.Test
         /// Creates and returns a new instance of a <see cref="Control"/> used as a preview of the screen saver.
         /// </summary>
         /// <returns>
-        /// A <see cref="Control"/> used as a preview of the screen saver or <c>null</c> if the screen saver control
-        /// of shall be used instead.
+        /// A <see cref="Control"/> used as a preview of the screen saver.
         /// </returns>
         public Control CreatePreviewControl()
         {
-            return null;
+            return new ColorControl();
         }
 
         /// <summary>

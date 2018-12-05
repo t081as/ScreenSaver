@@ -39,9 +39,9 @@ using ScreenSaver.Media;
 namespace ScreenSaver.Test
 {
     /// <summary>
-    /// Test configuration for the <see cref="SlideShow"/> class.
+    /// Test configuration for the <see cref="MovingSlideShow"/> class.
     /// </summary>
-    internal class SlideShowTestConfiguration : ISlideShowConfiguration
+    internal class MovingSlideShowTestConfiguration : ISlideShowConfiguration
     {
         #region Constants and Fields
 
@@ -60,14 +60,14 @@ namespace ScreenSaver.Test
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SlideShowTestConfiguration"/> class.
+        /// Initializes a new instance of the <see cref="MovingSlideShowTestConfiguration"/> class.
         /// </summary>
-        public SlideShowTestConfiguration()
+        public MovingSlideShowTestConfiguration()
         {
             this.slideShowItems = new List<SlideShowItem>();
             this.currentIndex = 0;
 
-            int slideDisplayTime = 3000;
+            int slideDisplayTime = 11000;
 
             string localUserImageDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             string localUserTestImageDirectory = Path.Combine(localUserImageDirectory, "Test");

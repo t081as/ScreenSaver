@@ -50,7 +50,7 @@ namespace ScreenSaver.Media
         /// <summary>
         /// Initializes a new instance of the <see cref="RenderingErrorEventArgs"/> class.
         /// </summary>
-        /// <param name="exception">The image that has been rendered.</param>
+        /// <param name="exception">The exception that occured while rendering the image.</param>
         public RenderingErrorEventArgs(Exception exception)
         {
             this.Exception = exception;

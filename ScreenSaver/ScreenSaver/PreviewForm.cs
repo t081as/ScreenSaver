@@ -46,6 +46,8 @@ namespace ScreenSaver
         public PreviewForm(Control previewControl)
         {
             this.InitializeComponent();
+            this.DoubleBuffered = true;
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
             this.Controls.Add(previewControl);
             previewControl.Dock = DockStyle.Fill;

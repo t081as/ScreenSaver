@@ -27,54 +27,46 @@
 
 #region Namespaces
 using System;
-using System.Windows.Forms;
+using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Threading;
 #endregion
 
-namespace ScreenSaver
+namespace ScreenSaver.Media
 {
     /// <summary>
-    /// Describes an object that configures a screen saver.
+    /// Describes the functionality of an image slideshow.
     /// </summary>
-    public interface IScreenSaverConfiguration
+    public interface ISlideShow
     {
-        #region Properties
+        #region Events
 
         /// <summary>
-        /// Gets the name of the screen saver.
+        /// Triggered when a new image of the slideshow has been rendered.
         /// </summary>
-        string ScreenSaverName
-        {
-            get;
-        }
+        event EventHandler<ImageEventArgs> ImageRendered;
+
+        /// <summary>
+        /// Triggered when the rendering fails.
+        /// </summary>
+        event EventHandler<RenderingErrorEventArgs> Error;
 
         #endregion
 
         #region Methods
 
         /// <summary>
-        /// Creates and returns a new instance of a <see cref="Control"/> used as a screen saver for the given screen.
+        /// Starts the Slideshow.
         /// </summary>
-        /// <param name="screen">The <see cref="Screen"/> this screen saver control shall be used for or <c>null</c> if the control is used as a preview.</param>
-        /// <returns>A <see cref="Control"/> used as a screen saver for the given screen.</returns>
-        /// <exception cref="ArgumentNullException"><c>screen</c> is null.</exception>
-        Control CreateScreenSaverControl(Screen screen);
+        /// <exception cref="InvalidOperationException">The slideshow has already been started.</exception>
+        void Start();
 
         /// <summary>
-        /// Creates and returns a new instance of a <see cref="Control"/> used as a preview of the screen saver.
+        /// Stops the slideshow.
         /// </summary>
-        /// <returns>
-        /// A <see cref="Control"/> used as a preview of the screen saver.
-        /// </returns>
-        Control CreatePreviewControl();
-
-        /// <summary>
-        /// Creates and returns a new instance of a <see cref="Control"/> used to configure the screen saver.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="Control"/> used to configure the screen saver or <c>null</c> if the screen saver
-        /// can't be configured.
-        /// </returns>
-        ConfigurationControl CreateConfigurationControl();
+        /// <exception cref="InvalidOperationException">The slideshow has not been started.</exception>
+        void Stop();
 
         #endregion
     }

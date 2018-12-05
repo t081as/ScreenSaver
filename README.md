@@ -10,7 +10,7 @@ ScreenSaver is a .NET library for creating screen savers for the Microsoft Windo
 
 ## Installation
 
-### Option 1: NuGet
+### Option 0: NuGet
 NuGet packages are available [here](https://www.nuget.org/packages/ScreenSaver/).
 
 ### Option 1: Binary
@@ -47,4 +47,4 @@ see [AUTHORS.txt](https://gitlab.com/tobiaskoch/ScreenSaver/blob/master/AUTHORS.
 Thanks for your interest in this project. You can show your appreciation and support further development by [donating](https://www.tk-software.de/donate).
 
 ## License
-**ScreenSaver** © 2017-2018  Tobias Koch. Released under the [MIT License](https://gitlab.com/tobiaskoch/ScreenSaver/blob/master/LICENSE.md).
+**ScreenSaver** © 2017-2018  [Tobias Koch](https://www.tk-software.de). Released under the [MIT License](https://gitlab.com/tobiaskoch/ScreenSaver/blob/master/LICENSE.md).
