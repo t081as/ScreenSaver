@@ -1,6 +1,6 @@
 ## X.X (YYYY-YY-YY)
 
-- Moving slide show added
+- Moving slide show helper added
 - Performance improved
 
 ## 0.5 (2018-04-08)

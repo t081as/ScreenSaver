@@ -35,7 +35,87 @@ Get the source code using the following command:
 The library will be located in the directory *.\Build\Release* if the build succeeds.
 
 ## Usage
-The solution contains an example that demonstrates the usage of this library.
+
+Add a reference to the ScreenSaver nuget package or the ScreenSaver library
+
+Create a UserControl that serves as screen saver
+
+Create a screen saver configuration class implementing the `IScreenSaverConfiguration` interface:
+
+```csharp
+/// <summary>
+/// The configuration of the test screen saver.
+/// </summary>
+internal class ScreenSaverTestConfiguration : IScreenSaverConfiguration
+{
+    #region Properties
+
+    /// <summary>
+    /// Gets the name of the screen saver.
+    /// </summary>
+    public string ScreenSaverName
+    {
+        get
+        {
+            return "Test";
+        }
+    }
+
+    #endregion
+
+    #region Methods
+
+    /// <summary>
+    /// Creates and returns a new instance of a <see cref="Control"/> used as a screen saver for the given screen.
+    /// </summary>
+    /// <param name="screen">
+    /// The <see cref="Screen"/> this screen saver control shall be used for
+    /// or <c>null</c> if the control is used as a preview.
+    /// </param>
+    /// <returns>A <see cref="Control"/> used as a screen saver for the given screen.</returns>
+    public Control CreateScreenSaverControl(Screen screen)
+    {
+        return new FancyScreenSaverControl();
+    }
+
+    /// <summary>
+    /// Creates and returns a new instance of a <see cref="Control"/> used as a preview of the screen saver.
+    /// </summary>
+    /// <returns>
+    /// A <see cref="Control"/> used as a preview of the screen saver.
+    /// </returns>
+    public Control CreatePreviewControl()
+    {
+        return new FancyScreenSaverControl();
+    }
+
+    /// <summary>
+    /// Creates and returns a new instance of a <see cref="Control"/> used to configure the screen saver.
+    /// </summary>
+    /// <returns>
+    /// A <see cref="Control"/> used to configure the screen saver or <c>null</c> if the screen saver
+    /// can't be configured.
+    /// </returns>
+    public ConfigurationControl CreateConfigurationControl()
+    {
+        return null;
+    }
+}
+```
+
+Add the following code to your Main method:
+
+```csharp
+public static void Main(string[] args)
+{
+    ScreenSaver screenSaver = new ScreenSaver(new ScreenSaverTestConfiguration());
+    screenSaver.Run(args);
+}
+```
+
+That's it.
+
+The solution contains an example that demonstrates the usage of this library and additional helper classes.
 
 ## Contributing
 see [CONTRIBUTING.md](https://gitlab.com/tobiaskoch/ScreenSaver/blob/master/CONTRIBUTING.md)
