@@ -1,4 +1,4 @@
-## X.X (YYYY-YY-YY)
+## 1.0 (2018-12-06)
 
 - Moving slide show helper added
 - Performance improved
