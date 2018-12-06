@@ -202,8 +202,6 @@ namespace ScreenSaver.Media
                             renderingRectangle.Width = (int)Math.Round(renderingRectangle.Height * ratio, 0);
                             renderingRectangle.X = rnd.Next(150, nextItem.DisplayImage.Width - renderingRectangle.Width - 150 + 1);
                             renderingRectangle.Y = rnd.Next(150, nextItem.DisplayImage.Height - renderingRectangle.Height - 150 + 1);
-
-                            Debug.WriteLine($"Zoom out: {renderingRectangle.X} / {renderingRectangle.Y}  {renderingRectangle.Width} / {renderingRectangle.Height} Image {nextItem.DisplayImage.Width} / {nextItem.DisplayImage.Height}");
                         }
 
                         long i = 0;
@@ -254,17 +252,6 @@ namespace ScreenSaver.Media
 
                             this.ImageRendered?.Invoke(this, new ImageEventArgs(renderingImage));
                             i++;
-                            Debug.WriteLine($"Zoom out: {renderingRectangle.X} / {renderingRectangle.Y}  {renderingRectangle.Width} / {renderingRectangle.Height} Image {nextItem.DisplayImage.Width} / {nextItem.DisplayImage.Height}");
-
-                            if (renderingRectangle.Width + renderingRectangle.X > nextItem.DisplayImage.Width)
-                            {
-                                Debug.WriteLine("ALERT - X");
-                            }
-
-                            if (renderingRectangle.Height + renderingRectangle.Y > nextItem.DisplayImage.Height)
-                            {
-                                Debug.WriteLine("ALERT - Y");
-                            }
 
                             Thread.Sleep(renderThreadSleepTime);
 
