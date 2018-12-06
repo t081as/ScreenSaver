@@ -2,6 +2,7 @@
 
 - Moving slide show helper added
 - Performance improved
+- Documentation improved
 
 ## 0.5 (2018-04-08)
 
