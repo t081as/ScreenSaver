@@ -117,6 +117,8 @@ That's it.
 
 The solution contains an example that demonstrates the usage of this library and additional helper classes.
 
+**Please keep in mind that the helper classes are implemented using the Graphics.DrawImage method; feel free to use a more performant implementation using DirectX.**
+
 ## Contributing
 see [CONTRIBUTING.md](https://gitlab.com/tobiaskoch/ScreenSaver/blob/master/CONTRIBUTING.md)
 
