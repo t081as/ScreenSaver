@@ -32,6 +32,8 @@ release:
         - msbuild "ScreenSaver.sln" /p:Configuration="Release" /p:Platform="Any CPU" /p:TargetFrameworkVersion=v4.6.1 /p:OutputPath="..\..\Build\Release\net461"
         - msbuild "ScreenSaver.sln" /p:Configuration="Release" /p:Platform="Any CPU" /p:TargetFrameworkVersion=v4.6.2 /p:OutputPath="..\..\Build\Release\net462"
         - msbuild "ScreenSaver.sln" /p:Configuration="Release" /p:Platform="Any CPU" /p:TargetFrameworkVersion=v4.7 /p:OutputPath="..\..\Build\Release\net47"
+        - msbuild "ScreenSaver.sln" /p:Configuration="Release" /p:Platform="Any CPU" /p:TargetFrameworkVersion=v4.7.1 /p:OutputPath="..\..\Build\Release\net471"
+        - msbuild "ScreenSaver.sln" /p:Configuration="Release" /p:Platform="Any CPU" /p:TargetFrameworkVersion=v4.7.2 /p:OutputPath="..\..\Build\Release\net472"
         - mono nuget.exe pack ScreenSaver.nuspec
         - mono nuget.exe push ScreenSaver*.nupkg $NUGET_API_KEY -Source https://api.nuget.org/v3/index.json
 
