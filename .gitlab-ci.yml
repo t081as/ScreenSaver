@@ -41,3 +41,5 @@ debug:
     stage: test
     script:
         - msbuild "ScreenSaver.sln" /p:Configuration="Debug" /p:Platform="Any CPU"
+        - msbuild "ScreenSaver.sln" /p:Configuration="Debug" /p:Platform="Any CPU" /p:TargetFrameworkVersion=v4.7.1 /p:OutputPath="..\..\Build\Debug\net471"
+        - msbuild "ScreenSaver.sln" /p:Configuration="Debug" /p:Platform="Any CPU" /p:TargetFrameworkVersion=v4.7.2 /p:OutputPath="..\..\Build\Debug\net472"
