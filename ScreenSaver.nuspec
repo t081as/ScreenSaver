@@ -42,6 +42,12 @@
     
     <file src="Build/Release/net47/ScreenSaver.dll" target="lib/net47" />
     <file src="Build/Release/net47/ScreenSaver.xml" target="lib/net47" />
+
+    <file src="Build/Release/net471/ScreenSaver.dll" target="lib/net471" />
+    <file src="Build/Release/net471/ScreenSaver.xml" target="lib/net471" />
+
+    <file src="Build/Release/net472/ScreenSaver.dll" target="lib/net472" />
+    <file src="Build/Release/net472/ScreenSaver.xml" target="lib/net472" />
     
   </files>
 </package>

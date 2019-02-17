@@ -67,6 +67,22 @@ msbuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo ^
   ScreenSaver.sln
 if errorlevel 1 goto error
 
+echo Building solution v4.7.1 (release)
+msbuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo ^
+  /property:Configuration=Release /property:Platform="Any CPU" ^
+  /verbosity:quiet ^
+  /p:TargetFrameworkVersion=v4.7.1 /p:OutputPath="..\..\Build\Release\net471" ^
+  ScreenSaver.sln
+if errorlevel 1 goto error
+
+echo Building solution v4.7.2 (release)
+msbuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo ^
+  /property:Configuration=Release /property:Platform="Any CPU" ^
+  /verbosity:quiet ^
+  /p:TargetFrameworkVersion=v4.7.2 /p:OutputPath="..\..\Build\Release\net472" ^
+  ScreenSaver.sln
+if errorlevel 1 goto error
+
 echo Builing package
 nuget pack ScreenSaver.nuspec
 if errorlevel 1 goto error
