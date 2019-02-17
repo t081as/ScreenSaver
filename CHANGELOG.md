@@ -1,3 +1,7 @@
+## 1.1 (YYYY-MM-DD)
+
+- Adding support for .NET Framework 4.7.1 and 4.7.2
+
 ## 1.0 (2018-12-06)
 
 - Moving slide show helper added
