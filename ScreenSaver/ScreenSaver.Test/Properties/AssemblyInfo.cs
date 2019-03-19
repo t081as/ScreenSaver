@@ -1,7 +1,7 @@
 ﻿#region MIT License
 // The MIT License (MIT)
 //
-// Copyright © 2017-2018 Tobias Koch <t.koch@tk-software.de>
+// Copyright © 2017-2019 Tobias Koch <t.koch@tk-software.de>
 //
 // Permission is hereby granted, free of charge, to any person
 // obtaining a copy of this software and associated documentation
@@ -38,7 +38,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Tobias Koch")]
 [assembly: AssemblyProduct("ScreenSaver")]
-[assembly: AssemblyCopyright("Copyright © Tobias Koch, 2017-2018")]
+[assembly: AssemblyCopyright("Copyright © Tobias Koch, 2017-2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
