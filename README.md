@@ -2,10 +2,6 @@
 
 # SCREENSAVER
 
-[![pipeline status](https://gitlab.com/tobiaskoch/ScreenSaver/badges/master/pipeline.svg)](https://gitlab.com/tobiaskoch/ScreenSaver/commits/master)
-[![maintained: yes](https://tobiaskoch.gitlab.io/badges/maintained-yes.svg)](https://gitlab.com/tobiaskoch/ScreenSaver/commits/master)
-[![donate: paypal](https://tobiaskoch.gitlab.io/badges/donate-paypal.svg)](https://www.tk-software.de/donate)
-
 ScreenSaver is a .NET library for creating screen savers for the Microsoft Windows operating system.
 
 ## Installation
